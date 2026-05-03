@@ -1,0 +1,79 @@
+{
+  "name": "agentcon",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "package": "electron-vite build && electron-builder --mac --arm64",
+    "package:dir": "electron-vite build && electron-builder --mac --arm64 --dir"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
+    "@types/js-yaml": "^4.0.9",
+    "chokidar": "^5.0.0",
+    "js-yaml": "^4.1.1",
+    "monaco-editor": "^0.55.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "electron": "^41.3.0",
+    "electron-builder": "^26.8.1",
+    "electron-vite": "^5.0.0",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4"
+  },
+  "build": {
+    "appId": "dev.growingpotatoes.agentcon",
+    "productName": "Agentcon",
+    "directories": {
+      "buildResources": "build",
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/templates",
+        "to": "templates"
+      },
+      {
+        "from": "resources/bundled-agents",
+        "to": "bundled-agents"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "resources/icon.icns",
+      "hardenedRuntime": true,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "gatekeeperAssess": false
+    }
+  }
+}
