@@ -1,0 +1,1 @@
+Could not load Claude Code config: ENOENT: no such file or directory, read '/tmp/test-user-claude/settings.json'Reload

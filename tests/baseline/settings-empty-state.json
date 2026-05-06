@@ -1,0 +1,327 @@
+{
+  "tag": "div",
+  "role": null,
+  "text": "",
+  "children": [
+    {
+      "tag": "header",
+      "role": null,
+      "text": "",
+      "children": [
+        {
+          "tag": "div",
+          "role": null,
+          "text": "",
+          "children": [
+            {
+              "tag": "button",
+              "role": null,
+              "text": "",
+              "children": [
+                {
+                  "tag": "span",
+                  "role": null,
+                  "text": "Project",
+                  "children": []
+                },
+                {
+                  "tag": "span",
+                  "role": null,
+                  "text": "<project>/.claude — committed to git",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "tag": "button",
+              "role": null,
+              "text": "",
+              "children": [
+                {
+                  "tag": "span",
+                  "role": null,
+                  "text": "User",
+                  "children": []
+                },
+                {
+                  "tag": "span",
+                  "role": null,
+                  "text": "~/.claude — applies to every project",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "tag": "button",
+              "role": null,
+              "text": "",
+              "children": [
+                {
+                  "tag": "span",
+                  "role": null,
+                  "text": "Project local",
+                  "children": []
+                },
+                {
+                  "tag": "span",
+                  "role": null,
+                  "text": ".claude/settings.local.json — gitignored",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "role": null,
+          "text": "",
+          "children": [
+            {
+              "tag": "span",
+              "role": null,
+              "text": "No project",
+              "children": []
+            },
+            {
+              "tag": "button",
+              "role": null,
+              "text": "Pick a folder…",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "div",
+      "role": null,
+      "text": "",
+      "children": [
+        {
+          "tag": "nav",
+          "role": null,
+          "text": "",
+          "children": [
+            {
+              "tag": "button",
+              "role": null,
+              "text": "Agents",
+              "children": []
+            },
+            {
+              "tag": "button",
+              "role": null,
+              "text": "Skills",
+              "children": []
+            },
+            {
+              "tag": "button",
+              "role": null,
+              "text": "Commands",
+              "children": []
+            },
+            {
+              "tag": "button",
+              "role": null,
+              "text": "CLAUDE.md",
+              "children": []
+            },
+            {
+              "tag": "button",
+              "role": null,
+              "text": "Hooks",
+              "children": []
+            },
+            {
+              "tag": "button",
+              "role": null,
+              "text": "Permissions",
+              "children": []
+            },
+            {
+              "tag": "button",
+              "role": null,
+              "text": "Env",
+              "children": []
+            },
+            {
+              "tag": "button",
+              "role": null,
+              "text": "Plugins",
+              "children": []
+            },
+            {
+              "tag": "button",
+              "role": null,
+              "text": "Raw JSON",
+              "children": []
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "role": null,
+          "text": "",
+          "children": [
+            {
+              "tag": "div",
+              "role": null,
+              "text": "",
+              "children": [
+                {
+                  "tag": "div",
+                  "role": null,
+                  "text": "",
+                  "children": [
+                    {
+                      "tag": "h2",
+                      "role": null,
+                      "text": "Agents",
+                      "children": []
+                    },
+                    {
+                      "tag": "div",
+                      "role": null,
+                      "text": "user scope · ~/.claude/agents/",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "div",
+                  "role": null,
+                  "text": "",
+                  "children": [
+                    {
+                      "tag": "button",
+                      "role": null,
+                      "text": "Seed bundled",
+                      "children": []
+                    },
+                    {
+                      "tag": "div",
+                      "role": null,
+                      "text": "",
+                      "children": [
+                        {
+                          "tag": "...",
+                          "role": null,
+                          "text": "",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "button",
+                      "role": null,
+                      "text": "New agent",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "div",
+              "role": null,
+              "text": "",
+              "children": [
+                {
+                  "tag": "div",
+                  "role": null,
+                  "text": "",
+                  "children": [
+                    {
+                      "tag": "div",
+                      "role": null,
+                      "text": "",
+                      "children": [
+                        {
+                          "tag": "...",
+                          "role": null,
+                          "text": "",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "div",
+                      "role": null,
+                      "text": "Pre-built agents you can save as-is or tweak first.",
+                      "children": []
+                    },
+                    {
+                      "tag": "div",
+                      "role": null,
+                      "text": "",
+                      "children": [
+                        {
+                          "tag": "...",
+                          "role": null,
+                          "text": "",
+                          "children": []
+                        },
+                        {
+                          "tag": "...",
+                          "role": null,
+                          "text": "",
+                          "children": []
+                        },
+                        {
+                          "tag": "...",
+                          "role": null,
+                          "text": "",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "div",
+                  "role": null,
+                  "text": "",
+                  "children": [
+                    {
+                      "tag": "div",
+                      "role": null,
+                      "text": "",
+                      "children": [
+                        {
+                          "tag": "...",
+                          "role": null,
+                          "text": "",
+                          "children": []
+                        },
+                        {
+                          "tag": "...",
+                          "role": null,
+                          "text": "",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "div",
+                      "role": null,
+                      "text": "",
+                      "children": [
+                        {
+                          "tag": "...",
+                          "role": null,
+                          "text": "",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

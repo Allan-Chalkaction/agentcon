@@ -1,0 +1,21 @@
+/**
+ * Fixture CSS module for the Phase 0 bootstrap test.
+ *
+ * Purpose: verify that:
+ * 1. `import styles from "./Example.module.css"` produces a non-empty object
+ *    (styles.container is defined) — CONS-01 / AC-049 CSS Modules pass-through check.
+ * 2. `getComputedStyle(el).getPropertyValue("--example-color")` returns the
+ *    token value set in this file — CONS-21 / AC-049 getComputedStyle round-trip check.
+ *
+ * The token is declared on the .container class so it's scoped to the element
+ * under test, making the assertion deterministic.
+ */
+
+.container {
+  --example-color: #b8362b;
+  --example-bg: #f1ead8;
+  color: var(--example-color);
+  background-color: var(--example-bg);
+  padding: 8px;
+  border: 1px solid var(--example-color);
+}

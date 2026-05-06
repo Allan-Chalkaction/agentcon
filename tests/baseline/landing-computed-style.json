@@ -1,0 +1,37 @@
+{
+  "deploy-button": {
+    "--lp-accent-red": "#b8362b",
+    "--lp-font-mono": "\"JetBrains Mono\", \"SF Mono\", Menlo, Monaco, ui-monospace, monospace",
+    "--lp-ink": "#1d1c19"
+  },
+  "footer": {
+    "--lp-font-mono": "\"JetBrains Mono\", \"SF Mono\", Menlo, Monaco, ui-monospace, monospace",
+    "--lp-ink-faint": "#7a766f",
+    "--lp-surface-cream": "#f1ead8"
+  },
+  "headline-line1": {
+    "--lp-font-display": "\"EB Garamond\", Georgia, \"Times New Roman\", serif",
+    "--lp-ink": "#1d1c19",
+    "--lp-text-xl": "56px"
+  },
+  "headline-line2": {
+    "--lp-accent-red": "#b8362b",
+    "--lp-font-display": "\"EB Garamond\", Georgia, \"Times New Roman\", serif",
+    "--lp-text-xl": "56px"
+  },
+  "landing-page": {
+    "--lp-font-mono": "\"JetBrains Mono\", \"SF Mono\", Menlo, Monaco, ui-monospace, monospace",
+    "--lp-ink": "#1d1c19",
+    "--lp-surface-cream": "#f1ead8"
+  },
+  "operative-card": {
+    "--lp-accent-red": "#b8362b",
+    "--lp-ink-soft": "#4a4742",
+    "--lp-surface-cream-soft": "#ece4cf"
+  },
+  "transmission-row": {
+    "--lp-font-mono": "\"JetBrains Mono\", \"SF Mono\", Menlo, Monaco, ui-monospace, monospace",
+    "--lp-on-dark": "#d8d2bf",
+    "--lp-surface-dark": "#131512"
+  }
+}

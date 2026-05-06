@@ -1,0 +1,5 @@
+{
+  "init-failure": "Could not load Claude Code config: ENOENT: no such file or directory, getRootsReload",
+  "save-failure": "Mock write failure — writeShouldFail was set to true",
+  "scope-load-failure": "Could not load Claude Code config: ENOENT: no such file or directory, read '/tmp/test-user-claude/settings.json'Reload"
+}

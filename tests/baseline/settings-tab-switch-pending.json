@@ -1,0 +1,6 @@
+{
+  "behavior": "discarded",
+  "captured_at": "phase-0.5",
+  "verified_against_code": "HooksTab.tsx draft useEffect lines 36-39 — draft resets to data.settings?.hooks on scope/data.settings change; tab switch unmounts HooksTab (SurfaceView switch in ClaudeSettingsPanel.tsx:212-233), destroying local draft state with no write. On return, draft reinitializes from disk.",
+  "binding_arc": "AC-035 binds to: discarded"
+}
