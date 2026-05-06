@@ -1,0 +1,108 @@
+/* Landing page layout — consumed inside .landing-root scroll container */
+/* Token source: tokens-landing.css scoped under .landing-root */
+/* Phase 1: base layout and region stubs.
+   Phase 4 adds: responsive breakpoints (AC-045), prefers-reduced-motion (AC-042). */
+
+.page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--lp-ink);
+  font-family: var(--lp-font-mono);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent horizontal overflow at any viewport width in the 1024–1680 range.
+     .landing-root already sets overflow-x:hidden; this ensures the page flex
+     container does not generate a horizontal scrollbar. */
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Region stubs — Phase 1 scaffold.
+   Phases 2-4 have fleshed these out; the data-testid attributes
+   satisfy AC-001 (document order of named regions). */
+
+.regionHeader {
+  width: 100%;
+}
+
+.regionStatus {
+  width: 100%;
+}
+
+.regionProject {
+  max-width: var(--lp-content-max);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--lp-page-pad-x);
+}
+
+.regionHero {
+  max-width: var(--lp-content-max);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--lp-page-pad-x);
+}
+
+.regionPersonnel {
+  max-width: var(--lp-content-max);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--lp-page-pad-x);
+}
+
+.regionTransmissions {
+  width: 100%;
+  background: var(--lp-surface-dark);
+}
+
+.regionOperatives {
+  max-width: var(--lp-content-max);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--lp-page-pad-x);
+}
+
+.regionFooter {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* ── Responsive breakpoints (AC-045) ────────────────────────────────────────
+   ADR D11: viewport range is 1024px to 1680px.
+   QA tests at: 1024, 1280, 1680.
+   Strategy:
+   - At ≥1280px: full padding (var(--lp-page-pad-x) = 64px each side).
+   - At 1024–1279px: reduced padding (24px each side).
+     At 1024px: content width = 1024 - 48 = 976px. With max-width: 1200px,
+     content is 976px — all three operative cards fit (≈325px each).
+   - Below 1024px: out of scope per ADR D11; page may degrade.
+   The operatives grid is grid-template-columns: repeat(3, 1fr) in
+   OperativesGrid.module.css; it stays three-up across the full range.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* 1024–1279px: reduce horizontal padding from 64px to 24px */
+@media (max-width: 1279px) {
+  .regionProject,
+  .regionHero,
+  .regionPersonnel,
+  .regionOperatives {
+    padding: 0 24px;
+  }
+}
+
+/* 1280–1680px: full padding (default, set above via var(--lp-page-pad-x)). */
+/* No rule needed — defaults apply. */
+
+/* ── Prefers-reduced-motion (AC-042) ─────────────────────────────────────────
+   Any page-level motion introduced in Phase 4 is gated here.
+   Component-level animations (LIVE pulse, Deploy button transitions,
+   chevron rotation) are gated in their respective module CSS files.
+   This block is a page-level safety net.
+   ─────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  /* If any future transition is added at the .page level, disable it here. */
+  .page {
+    transition: none;
+  }
+}

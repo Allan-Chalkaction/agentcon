@@ -1,0 +1,152 @@
+/* ProjectSelector — Phase 2 (trigger closed state) + Phase 4 (open state, listbox, keyboard)
+   AC-007: trigger button, closed state.
+   AC-008: value text "- unassigned -" when no selection.
+   AC-009: click opens, first option highlighted.
+   AC-010: option click selects, closes, focus returns.
+   AC-011: Space/Enter opens, selected-or-first highlighted via aria-activedescendant.
+   AC-012: ArrowDown/ArrowUp move highlight with wrap.
+   AC-013: Enter selects + closes.
+   AC-014: Esc closes, no selection.
+   AC-015: outside click closes.
+   AC-016: hover/focus-visible/active states on trigger.
+   Phase 4 adds: .triggerOpen, .listbox, .option, .optionHighlighted, .chevronOpen. */
+
+/* ── Wrapper ── */
+/* position:relative so the absolutely-positioned listbox panel is positioned
+   relative to the trigger, not the page. */
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* ── Trigger (closed state — Phase 2 base) ── */
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-xs);
+  font-weight: var(--lp-weight-regular);
+  color: var(--lp-ink-soft);
+  background: var(--lp-surface-cream);
+  border: var(--lp-border-hair);
+  border-radius: var(--lp-radius-card);
+  cursor: default;
+  letter-spacing: 0.04em;
+  line-height: var(--lp-leading-mono);
+
+  /* Transition for open/close visual state change — gated by reduced-motion below */
+  transition: background 120ms ease, border-color 120ms ease;
+
+  /* Reset browser button styles */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* AC-016: hover state — visually distinct from idle */
+.trigger:hover {
+  background: var(--lp-surface-cream-soft);
+  border-color: var(--lp-ink-faint);
+}
+
+/* AC-016 / AC-010: focus-visible state — 2px outline in --lp-accent-red offset 2px.
+   Phase 2 already established this; keeping it here ensures no regression. */
+.trigger:focus-visible {
+  outline: 2px solid var(--lp-accent-red);
+  outline-offset: 2px;
+}
+
+/* AC-016: active state — visually distinct from hover */
+.trigger:active {
+  background: var(--lp-surface-cream-soft);
+  border-color: var(--lp-ink-soft);
+}
+
+/* AC-016: open state — border reflects open condition */
+.triggerOpen {
+  background: var(--lp-surface-cream-soft);
+  border-color: var(--lp-ink-faint);
+}
+
+/* ── Label parts ── */
+.label {
+  display: inline;
+}
+
+.bracket {
+  color: var(--lp-ink-faint);
+}
+
+.value {
+  color: var(--lp-ink);
+}
+
+/* ── Chevron ── */
+.chevron {
+  font-size: var(--lp-text-xxs);
+  color: var(--lp-ink-faint);
+  line-height: 1;
+  /* Rotate transition for open/close — gated by reduced-motion below */
+  display: inline-block;
+  transition: transform 120ms ease;
+}
+
+/* Chevron rotates 180deg when open (▾ becomes ▴ visually) */
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* ── Listbox panel (AC-009, AC-011, AC-012) ── */
+/* Absolutely positioned below the trigger, same width or wider. */
+.listbox {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  background: var(--lp-surface-cream);
+  border: var(--lp-border-hair);
+  border-radius: var(--lp-radius-card);
+
+  /* Layered above page content */
+  z-index: 100;
+
+  /* Subtle shadow to distinguish from page surface */
+  box-shadow: 0 4px 12px rgba(29, 28, 25, 0.12);
+}
+
+/* ── Option (default state) ── */
+.option {
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-xs);
+  font-weight: var(--lp-weight-regular);
+  color: var(--lp-ink-soft);
+  padding: 6px 12px;
+  cursor: default;
+  letter-spacing: 0.04em;
+  line-height: var(--lp-leading-mono);
+}
+
+/* ── Option highlighted (keyboard focus — AC-012 via aria-activedescendant) ──
+   This is the KEYBOARD HIGHLIGHT state, conveyed to AT via aria-activedescendant.
+   It is distinct from aria-selected (committed selection).
+   Background uses cream-soft; text uses ink for legibility. */
+.optionHighlighted {
+  background: var(--lp-surface-cream-soft);
+  color: var(--lp-ink);
+}
+
+/* ── Reduced-motion gates ── */
+/* AC-042: any transition/animation introduced in Phase 4 must be disabled
+   when prefers-reduced-motion: reduce is set. */
+@media (prefers-reduced-motion: reduce) {
+  .trigger {
+    transition: none;
+  }
+  .chevron {
+    transition: none;
+  }
+}

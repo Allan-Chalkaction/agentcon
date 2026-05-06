@@ -1,0 +1,43 @@
+/* RedactedSilhouette — Phase 3
+   AC-022: photo slot with silhouette SVG + REDACTED caption. */
+
+/* Outer wrapper — contains photo background + caption */
+.photoSlot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Dark desaturated background for the photo-slot area */
+.photoBackground {
+  width: 120px;
+  height: 120px;
+  background: var(--lp-surface-dark-soft);
+  border: var(--lp-border-card);
+  border-radius: var(--lp-radius-card);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Silhouette SVG — fills the photo slot bottom-up (shoulders at base) */
+.silhouette {
+  width: 100%;
+  height: 100%;
+  /* currentColor inherits from .photoBackground / .photoSlot color context */
+  color: var(--lp-ink-soft);
+}
+
+/* AC-022: "REDACTED" caption — separate DOM element, not inside SVG */
+.caption {
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-xs);
+  font-weight: var(--lp-weight-regular);
+  color: var(--lp-ink-faint);
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin: 0;
+}

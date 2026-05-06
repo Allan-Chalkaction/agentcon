@@ -1,0 +1,39 @@
+/* HeaderBar — Phase 2
+   AC-004: AGENTCON / FILE 0427-A / 2026-04-30, monospace UI font.
+   Full-width thin row, cream background, hairline bottom border. */
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 8px var(--lp-page-pad-x);
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-xxs);
+  line-height: var(--lp-leading-mono);
+  border-bottom: var(--lp-border-hair);
+  background: var(--lp-surface-cream);
+  letter-spacing: 0.06em;
+}
+
+.appName {
+  font-weight: var(--lp-weight-medium);
+  color: var(--lp-ink);
+  margin-right: 20px;
+}
+
+.fileId {
+  font-weight: var(--lp-weight-regular);
+  color: var(--lp-ink-faint);
+  flex: 1;
+}
+
+.date {
+  font-weight: var(--lp-weight-regular);
+  color: var(--lp-ink-faint);
+}
+
+@media (max-width: 1279px) {
+  .header {
+    padding: 8px 24px;
+  }
+}

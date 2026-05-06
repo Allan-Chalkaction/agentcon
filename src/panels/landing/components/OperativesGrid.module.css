@@ -1,0 +1,45 @@
+/* OperativesGrid — Phase 3
+   AC-030: section header with kicker + h2.
+   AC-031: 3-column grid layout (repeat(3, 1fr), gap 32px per PRD §8).
+   AC-045 note: grid stays 3 side-by-side across the 1024-1680px range per ADR D11.
+                Below 1024px is out of scope. */
+
+/* Section wrapper */
+.section {
+  padding: 56px 0;
+}
+
+/* Section header: kicker + h2 */
+.sectionHeader {
+  margin-bottom: 40px;
+}
+
+/* AC-030: kicker "QUICK START TEMPLATES" — mono, small, soft ink */
+.kicker {
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-xs);
+  font-weight: var(--lp-weight-regular);
+  color: var(--lp-ink-soft);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+/* AC-030: h2 "Field-ready operatives" — serif italic, --lp-text-lg.
+   PRD §8: "--lp-font-display italic at --lp-text-lg" */
+.heading {
+  font-family: var(--lp-font-display);
+  font-style: italic;
+  font-size: var(--lp-text-lg);
+  font-weight: var(--lp-weight-regular);
+  color: var(--lp-ink);
+  line-height: var(--lp-leading-tight);
+  margin: 0;
+}
+
+/* AC-031: 3-column grid layout per PRD §8 OperativesGrid.
+   PRD: "CSS grid grid-template-columns: repeat(3, 1fr) with gap: 32px" */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}

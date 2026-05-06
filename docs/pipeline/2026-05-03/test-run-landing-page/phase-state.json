@@ -1,0 +1,13 @@
+{
+  "active_phase": {
+    "number": 4,
+    "name": "Interactivity + accessibility polish",
+    "status": "REVIEWER_PASSED"
+  },
+  "phases": [
+    { "number": 1, "name": "Foundation", "status": "REVIEWER_PASSED" },
+    { "number": 2, "name": "Top sections — Header, Status, ProjectSelector, Hero", "status": "REVIEWER_PASSED" },
+    { "number": 3, "name": "Mid + bottom sections — PersonnelFile, Transmissions, OperativesGrid, Footer", "status": "REVIEWER_PASSED" },
+    { "number": 4, "name": "Interactivity + accessibility polish", "status": "REVIEWER_PASSED" }
+  ]
+}

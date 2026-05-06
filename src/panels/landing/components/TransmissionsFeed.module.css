@@ -1,0 +1,136 @@
+/* TransmissionsFeed — Phase 3
+   AC-025: header "// RECENT TRANSMISSIONS" + LIVE indicator.
+   AC-026: row styling — timestamp / codename / action.
+   AC-027: 4 rows rendered from seeded array.
+   AC-028: empty-state placeholder.
+   AC-029: LIVE indicator is CSS-only — no JS animation (no keyframe on JS side).
+   AC-042 note: prefers-reduced-motion rule disables the LIVE pulse animation. */
+
+/* Full-width dark band — background is set by LandingPage.module.css .regionTransmissions */
+.feed {
+  padding: 40px 0;
+}
+
+/* Centered content column — matches the page content-width */
+.inner {
+  max-width: var(--lp-content-max);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--lp-page-pad-x);
+}
+
+/* AC-025: header row */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--lp-surface-dark-soft);
+  padding-bottom: 16px;
+}
+
+/* "// RECENT TRANSMISSIONS" title */
+.title {
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-sm);
+  font-weight: var(--lp-weight-regular);
+  color: var(--lp-on-dark);
+  letter-spacing: 0.06em;
+}
+
+/* AC-025: LIVE indicator — green accent, with CSS-only opacity pulse */
+.liveIndicator {
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-xs);
+  font-weight: var(--lp-weight-regular);
+  color: var(--lp-accent-green);
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Pulsing dot — AC-029: CSS-only animation, no JS.
+   AC-042: disabled when prefers-reduced-motion: reduce is set. */
+.liveDot {
+  display: inline-block;
+  animation: livePulse var(--lp-pulse-duration) ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* AC-042 (prefers-reduced-motion): disable LIVE pulse when user has reduced motion set.
+   Note: AC-042 is a Phase 4 AC for final verification, but the CSS rule is implemented
+   here since the animation itself is Phase 3 work. */
+@media (prefers-reduced-motion: reduce) {
+  .liveDot {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Row container */
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* AC-026: individual transmission row */
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--lp-surface-dark-soft);
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-sm);
+  line-height: var(--lp-leading-mono);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+/* AC-026: timestamp — mono, secondary on-dark color */
+.timestamp {
+  color: var(--lp-on-dark-soft);
+  flex-shrink: 0;
+  min-width: 80px;
+}
+
+/* AC-026: separator — mono, muted */
+.separator {
+  color: var(--lp-on-dark-soft);
+  white-space: pre;
+}
+
+/* AC-026: codename — green accent */
+.codename {
+  color: var(--lp-accent-green);
+  flex-shrink: 0;
+}
+
+/* AC-026: action description — primary on-dark text */
+.action {
+  color: var(--lp-on-dark);
+}
+
+/* AC-028: empty state placeholder */
+.emptyState {
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-sm);
+  color: var(--lp-on-dark-soft);
+  padding: 16px 0;
+  letter-spacing: 0.04em;
+}
+
+/* Responsive: below 1280px, reduce inner padding */
+@media (max-width: 1279px) {
+  .inner {
+    padding: 0 24px;
+  }
+}

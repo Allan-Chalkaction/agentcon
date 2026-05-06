@@ -1,0 +1,46 @@
+{
+  "pipeline": "design-migration-cream-panels",
+  "run_dir": "docs/pipeline/2026-05-05/design-migration-cream-panels",
+  "phases": [
+    {
+      "id": "0",
+      "name": "Test runner setup",
+      "status": "REVIEWER_PASSED"
+    },
+    {
+      "id": "0.5",
+      "name": "Pre-migration baseline capture",
+      "status": "REVIEWER_PASSED"
+    },
+    {
+      "id": "1",
+      "name": "Introduce content tokens (additive only)",
+      "status": "PENDING"
+    },
+    {
+      "id": "2",
+      "name": "Atomic rename — landing flips to unified tokens",
+      "status": "PENDING"
+    },
+    {
+      "id": "3",
+      "name": "Dev-switch button re-themed (App.tsx)",
+      "status": "PENDING"
+    },
+    {
+      "id": "4",
+      "name": "Settings panel re-theme",
+      "status": "PENDING"
+    },
+    {
+      "id": "5",
+      "name": "Settings regression tests + final verification",
+      "status": "PENDING"
+    }
+  ],
+  "active_phase": {
+    "id": "1",
+    "name": "Introduce content tokens (additive only)",
+    "status": "PENDING"
+  }
+}

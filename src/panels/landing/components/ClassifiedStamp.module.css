@@ -1,0 +1,14 @@
+/* ClassifiedStamp — Phase 3
+   AC-023: CLASSIFIED stamp, rotated -15deg, red accent. */
+
+.stamp {
+  /* AC-023: CSS rotation between -20deg and -10deg — using -15deg per PRD §8 */
+  transform: rotate(-15deg);
+  /* Width drives the stamp size; height is derived from viewBox ratio (240:80 = 3:1) */
+  width: 200px;
+  height: auto;
+  /* Opacity per PRD §8 PersonnelFileCard UI specifics */
+  opacity: 0.92;
+  /* Allows stamp to overflow its slot for the overlaid effect */
+  overflow: visible;
+}

@@ -1,0 +1,66 @@
+/* Hero — Phase 2
+   AC-018: h1 display typography, EB Garamond regular + italic.
+   AC-019: body paragraph.
+   AC-020: eyebrow kicker + metadata in mono. */
+
+.hero {
+  padding: 48px 0 56px;
+}
+
+/* AC-020: eyebrow row */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-xs);
+  font-weight: var(--lp-weight-regular);
+  letter-spacing: 0.06em;
+}
+
+.kicker {
+  color: var(--lp-ink-soft);
+}
+
+.meta {
+  color: var(--lp-ink-faint);
+}
+
+/* AC-018: h1 display headline */
+.headline {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-text-xl);
+  font-weight: var(--lp-weight-regular);
+  line-height: var(--lp-leading-tight);
+  margin: 0 0 32px;
+}
+
+/* Line 1: "Brief once." — roman, dark ink */
+.headlineLine1 {
+  font-style: normal;
+  color: var(--lp-ink);
+}
+
+/* Line 2: "Deploy everywhere." — italic, red accent.
+   EB Garamond Italic woff2 is registered via @font-face in tokens-landing.css
+   with font-style:italic. The browser uses the real italic file, not synthetic
+   obliquing. CONS-09 satisfied. */
+.headlineLine2 {
+  font-style: italic;
+  color: var(--lp-accent-red);
+}
+
+/* AC-019: body paragraph */
+.body {
+  /* Inherits system-sans from body (settings panel convention).
+     Per PRD §8 UI Requirements hero note: "Body paragraph in default sans
+     inherited from body" — we do not override font-family here. */
+  font-size: var(--lp-text-base);
+  line-height: var(--lp-leading-normal);
+  color: var(--lp-ink-soft);
+  max-width: 480px;
+  margin: 0;
+}

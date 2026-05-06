@@ -1,0 +1,74 @@
+/* PersonnelFileCard — Phase 3
+   AC-021: labeled field table, mono labels + values.
+   AC-022: REDACTED photo slot.
+   AC-023: CLASSIFIED stamp absolutely positioned, rotated. */
+
+/* Card root — position:relative required for absolutely-positioned stamp */
+.card {
+  position: relative;
+  background: var(--lp-surface-cream-soft);
+  border: var(--lp-border-card);
+  border-radius: var(--lp-radius-card);
+  padding: 32px;
+  /* Card is sized to content; max-width keeps it from spanning too wide */
+  max-width: 560px;
+  /* Clip overflow so stamp edges don't bleed into other regions unexpectedly */
+  overflow: hidden;
+  margin: 0 0 56px;
+}
+
+/* Two-column flex body: photo slot (left) + field table (right) */
+.body {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+/* AC-021: field table using <dl> for semantic label/value pairs */
+.fieldTable {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Each label/value row */
+.fieldRow {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+}
+
+/* AC-021: labels — uppercase, mono, secondary ink, small size */
+.fieldLabel {
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-xs);
+  font-weight: var(--lp-weight-regular);
+  color: var(--lp-ink-soft);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  /* Fixed width so values align */
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+/* AC-021: values — mono, primary ink */
+.fieldValue {
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-sm);
+  font-weight: var(--lp-weight-regular);
+  color: var(--lp-ink);
+  margin: 0;
+}
+
+/* AC-023: stamp wrapper — absolutely positioned over lower-right of card.
+   The stamp SVG inside has its own rotation applied via ClassifiedStamp.module.css. */
+.stampWrapper {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  /* pointer-events none so stamp doesn't capture mouse events */
+  pointer-events: none;
+}

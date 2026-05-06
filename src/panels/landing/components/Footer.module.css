@@ -1,0 +1,31 @@
+/* Footer — Phase 3
+   AC-038: thin footer row, mono font, faint ink, flex space-between. */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px var(--lp-page-pad-x);
+  font-family: var(--lp-font-mono);
+  font-size: var(--lp-text-xxs);
+  font-weight: var(--lp-weight-regular);
+  color: var(--lp-ink-faint);
+  letter-spacing: 0.06em;
+  border-top: var(--lp-border-hair);
+  background: var(--lp-surface-cream);
+}
+
+.left {
+  /* AC-038: "v0.1 · ~/.CLAUDE" */
+}
+
+.right {
+  /* AC-038: "ENCRYPTED AT REST" */
+}
+
+@media (max-width: 1279px) {
+  .footer {
+    padding: 16px 24px;
+  }
+}
