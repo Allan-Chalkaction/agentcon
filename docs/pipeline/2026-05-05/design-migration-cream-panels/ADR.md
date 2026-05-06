@@ -337,6 +337,27 @@ Architect read the existing settings code (`HooksTab.tsx`, `claudeConfigStore.ts
 
 **Resolves AC-017, AC-022, AC-031, AC-032, AC-035, AC-040, CTO concerns #4 (whichever-branch disjunctions).**
 
+#### Addendum A — 2026-05-05 (Phase 0.5 AC-028 binding refinement)
+
+**Discovered during Phase 0.5 baseline capture.** D10 originally locks six pre-migration semantic branches whose AC text said "whichever pre-migration behavior" without naming a code path. A seventh case surfaced when Builder attempted to capture the AC-028 alert-text fixture: AC-028's wording binds to a code path that does not behave as the AC text suggests on the surface. This addendum locks the seventh branch inline so future Builders reading D10 during exploration encounter the constraint alongside the other six.
+
+**AC-028 (invalid-config alert text — trigger path):** AC-028's Given clause says "the Claude Code configuration file **exists but contains invalid JSON**." The pre-migration code at `src/stores/claudeConfigStore.ts:274-281` silently swallows JSON parse errors:
+
+```ts
+let parsedSettings: ClaudeSettings | null = null;
+if (settingsRaw != null) {
+  try {
+    parsedSettings = parseSettings(settingsRaw);
+  } catch (e) {
+    parsedSettings = null;
+  }
+}
+```
+
+`parsedSettings` is set to `null` and `scopeData.error` is NOT set. The `errorBanner` does NOT render for the "file exists but is malformed JSON" condition. The only path that triggers the `errorBanner` for a configuration-load failure is an IPC-level `fs.readText` rejection (caught at `claudeConfigStore.ts:346-353`, which sets `scopeData.error` to the rejection message). **Pre-migration semantic: AC-028's "invalid JSON" is casual prose for "config cannot be loaded" — the captured fixture (`tests/baseline/settings-invalid-json-alert.txt`) reflects the IPC-level read-failure alert text, not an in-code JSON parse failure alert. AC-028 binds to: IPC-rejection trigger path.** Phase 5's AC-028 assert leg MUST use an IPC `readText` rejection (mock `fs.readText` to reject) to reproduce the comparable condition. A malformed-JSON entry in the fake-fs Map will NOT trigger the alert path and will produce a false-failed test (or vacuously-passing empty-string compare).
+
+**Cross-references:** Phase 0.5 QA verdict (path (a) adjudication) at `docs/pipeline/2026-05-05/design-migration-cream-panels/qa/phase-005-attempt-1-verdict.md` §"Step 4: AC-028 Ambiguity Adjudication." Phase 0.5 Reviewer routing recommendation (Option (b) — D10 addendum + CONS-23 reinforcement) at `docs/pipeline/2026-05-05/design-migration-cream-panels/reviewer/phase-005-attempt-1-verdict.md` §"Item 1: AC-028 Binding Interpretation — Routing Recommendation." CONS-23 ledger entry in PRD §11 Final Consensus Lock.
+
 ### D11. Globals — `overflow: hidden` and `:focus-visible` — preserve in place + scoped scroll
 
 **`html, body, #root { overflow: hidden }` (tokens.css:105-112):** Preserved in place under the `=== CHROME TOKENS ===` band. The rule is correct: the app is desktop chrome, not a scrolling document. The landing page's own scrollable container handles its overflow at the `.landing-root` level (now renamed to whatever class LandingPage.tsx applies). **AC-051 binds to outcome (a): preserved in place.**
