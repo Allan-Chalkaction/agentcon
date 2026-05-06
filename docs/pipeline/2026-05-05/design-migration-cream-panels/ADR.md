@@ -291,6 +291,44 @@ The `--lp-*` → unified rename map. AC-004 binds to "non-prefixed shared name."
 
 The values committed in code are: `--border-panel-strong-color: #9c8c5c`, `--empty-state-border-color: #bfb59a`. AC tests assert these resolved values via `getComputedStyle`.
 
+#### Addendum A — 2026-05-06 (Phase 1 Attempt 2 AC-007 contrast correction)
+
+**Discovered during Phase 1 Attempt 1 QA verification.** The original D7 contrast verification for `--border-panel-strong-color` contained two arithmetic errors:
+- Border luminance (`#9c8c5c`, RGB 156,140,92) was overstated as 0.2825; correct value is **0.2660**.
+- Cream luminance (`#f1ead8`, RGB 241,234,216) was understated as 0.8130; correct value is **0.8250**.
+
+These errors caused the D7-selected value `#9c8c5c` to be reported as ≈3.07:1 contrast against cream. The actual contrast for `#9c8c5c` is **2.769:1** (confirmed independently by QA), which is below the AC-007 floor of ≥3.0:1.
+
+**Correction:** Phase 1 Attempt 2 replaced the token value with `#8a7a4a` (RGB 138, 122, 74). The committed `tokens.css` carries this value at line 143 and is the source of truth.
+
+**Corrected values for the D7 table row:**
+
+| Token | Value | Purpose | AC binding |
+|---|---|---|---|
+| `--border-panel-strong` | `1.5px solid var(--border-panel-strong-color)` | the architectural border treatment for cream panels | AC-006, AC-007, AC-008, AC-044 |
+| `--border-panel-strong-color` | **`#8a7a4a`** (was `#9c8c5c`) | bare color for cases where width is set elsewhere | AC-008 |
+
+**Corrected luminance arithmetic (independent WCAG 2.x recomputation):**
+
+`#f1ead8` (cream): r_lin = 0.879622, g_lin = 0.822786, b_lin = 0.686685, **L_cream = 0.825043**
+`#8a7a4a` (border, post-fix): r_lin = 0.254152, g_lin = 0.194618, b_lin = 0.068478, **L_border = 0.198168**
+
+Contrast = `(0.825043 + 0.05) / (0.198168 + 0.05) = 0.875043 / 0.248168 = 3.526:1`
+
+**Margin: +0.526 above the ≥3.0:1 AC-007 floor.**
+
+**Three-witness verification record:** Builder computed **3.526:1**; QA computed **3.526:1**; Reviewer computed **3.523:1** (within 0.01 ratio-unit tolerance — the small variation is rounding precision at the linearization step). All three independent computations agree. The correct result is **≈3.52–3.53:1**.
+
+**Cross-references for audit trail:**
+- QA Attempt 1 findings (the original failure, with independent contrast computation): `docs/pipeline/2026-05-05/design-migration-cream-panels/qa/phase-01-attempt-1-findings.md`
+- QA Attempt 2 verdict (independent re-verification of the fix): `docs/pipeline/2026-05-05/design-migration-cream-panels/qa/phase-01-attempt-2-verdict.md`
+- Reviewer Phase 1 verdict (third independent verification + pre-drafted addendum source): `docs/pipeline/2026-05-05/design-migration-cream-panels/reviewer/phase-01-attempt-1-verdict.md`
+- Builder's combined Build Summary (Attempt 1 + Attempt 2 sections, including the full WCAG step-by-step): `docs/pipeline/2026-05-05/design-migration-cream-panels/builds/phase-01-attempt-1.md`
+
+**The note above D8 ("The values committed in code are: `--border-panel-strong-color: #9c8c5c`...") is superseded by this addendum for the `--border-panel-strong-color` row.** The committed `--empty-state-border-color: #bfb59a` value in that note remains correct and unchanged.
+
+**Note for future Builders:** the committed `tokens.css` is the source of truth for the value; this addendum exists so reading D7 in isolation does not mislead. **Do NOT change `--border-panel-strong-color` back to `#9c8c5c`** — the AC-007 ≥3.0:1 contrast floor is binding, and `#9c8c5c` fails it at 2.769:1. Phase 4 Builder applying this border token to cream panels: use `#8a7a4a` as the resolved value when verifying AC-007's computed-style assertion.
+
 ### D8. Empty-state border treatment
 
 `border-style: solid` (not dashed). `border-width: 1.5px`. `border-color: var(--empty-state-border-color)` (#bfb59a). The dashed treatment is dropped because dashed at the existing weight overpowers cream visually; the prompt explicitly flagged it as too heavy. **AC-023 binds to `solid`** (the primary branch, not the alternative).

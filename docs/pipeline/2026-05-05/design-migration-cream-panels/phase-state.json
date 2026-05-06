@@ -15,7 +15,7 @@
     {
       "id": "1",
       "name": "Introduce content tokens (additive only)",
-      "status": "PENDING"
+      "status": "REVIEWER_PASSED"
     },
     {
       "id": "2",
@@ -41,6 +41,6 @@
   "active_phase": {
     "id": "1",
     "name": "Introduce content tokens (additive only)",
-    "status": "PENDING"
+    "status": "REVIEWER_PASSED"
   }
 }

@@ -1754,3 +1754,12 @@ Append-only acknowledgement of an AC-028 binding ambiguity surfaced during Phase
 
 No other changes; consensus not reopened. Pipeline continues to Phase 1.
 
+### Architect Acknowledgement (Round 5) — 2026-05-06 (Phase 1 D7 addendum)
+
+Phase 1 Attempt 1 surfaced an arithmetic error in ADR D7's contrast verification for `--border-panel-strong-color` (the D7-selected value `#9c8c5c` actually computes 2.769:1 against `--surface-cream`, below AC-007's ≥3.0:1 floor); Builder fixed the value to `#8a7a4a` in Attempt 2 (3.526:1, +0.526 margin); QA and Reviewer both independently verified the corrected contrast against the committed `tokens.css`; this round lands the documentation correction in ADR D7 so Phase 4 Builder reading D7 as a reference encounters the corrected arithmetic and value.
+
+- **D7 Addendum A landed.** ADR D7 now carries an inline addendum dated 2026-05-06 that records the arithmetic error (border luminance overstated as 0.2825 vs. actual 0.2660; cream luminance understated as 0.8130 vs. actual 0.8250), supersedes the `--border-panel-strong-color` row of the D7 table to **`#8a7a4a`** (RGB 138,122,74), and locks the corrected luminance arithmetic with a three-witness verification record (Builder 3.526:1, QA 3.526:1, Reviewer 3.523:1 — all within 0.01 tolerance, ratio range ≈3.52–3.53:1). Future Builders are explicitly instructed not to revert to `#9c8c5c`. Cross-references: QA Attempt 1 findings (`docs/pipeline/2026-05-05/design-migration-cream-panels/qa/phase-01-attempt-1-findings.md`), QA Attempt 2 verdict (`docs/pipeline/2026-05-05/design-migration-cream-panels/qa/phase-01-attempt-2-verdict.md`), Reviewer Phase 1 verdict (`docs/pipeline/2026-05-05/design-migration-cream-panels/reviewer/phase-01-attempt-1-verdict.md`), and Builder's combined Build Summary (`docs/pipeline/2026-05-05/design-migration-cream-panels/builds/phase-01-attempt-1.md`).
+- **No CONS ledger update needed.** This is a documentation correction inside an existing ADR decision, not a new constraint surface. Confirmed by walking the existing CONS ledger: CONS-23 governs AC-028 trigger paths (unrelated); no other CONS entry covers AC-007 contrast or D7 token values. The committed `tokens.css` already carries `#8a7a4a`; the addendum aligns the ADR's reference text with the code, no new Builder/QA/Reviewer obligation is created.
+
+No other changes; consensus not reopened. Pipeline continues to Phase 2.
+
