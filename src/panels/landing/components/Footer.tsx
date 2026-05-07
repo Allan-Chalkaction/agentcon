@@ -1,6 +1,6 @@
 // Footer — Phase 3
 // AC-038: footer with "v0.1 · ~/.CLAUDE" left-aligned and "ENCRYPTED AT REST"
-//         right-aligned, both in the monospace UI token (--lp-font-mono).
+//         right-aligned, both in the monospace UI token (--font-mono).
 
 import styles from "./Footer.module.css";
 

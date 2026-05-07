@@ -19,8 +19,8 @@
     },
     {
       "id": "2",
-      "name": "Atomic rename — landing flips to unified tokens",
-      "status": "PENDING"
+      "name": "Atomic rename \u2014 landing flips to unified tokens",
+      "status": "REVIEWER_PASSED"
     },
     {
       "id": "3",
@@ -39,8 +39,8 @@
     }
   ],
   "active_phase": {
-    "id": "1",
-    "name": "Introduce content tokens (additive only)",
+    "id": "2",
+    "name": "Atomic rename \u2014 landing flips to unified tokens",
     "status": "REVIEWER_PASSED"
   }
 }

@@ -2,7 +2,8 @@
    AC-030: section header with kicker + h2.
    AC-031: 3-column grid layout (repeat(3, 1fr), gap 32px per PRD §8).
    AC-045 note: grid stays 3 side-by-side across the 1024-1680px range per ADR D11.
-                Below 1024px is out of scope. */
+                Below 1024px is out of scope.
+   Phase 2: all lp- prefixed tokens renamed to unified token names. */
 
 /* Section wrapper */
 .section {
@@ -16,23 +17,23 @@
 
 /* AC-030: kicker "QUICK START TEMPLATES" — mono, small, soft ink */
 .kicker {
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-xs);
-  font-weight: var(--lp-weight-regular);
-  color: var(--lp-ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  color: var(--ink-soft);
   letter-spacing: 0.08em;
   margin-bottom: 8px;
 }
 
-/* AC-030: h2 "Field-ready operatives" — serif italic, --lp-text-lg.
-   PRD §8: "--lp-font-display italic at --lp-text-lg" */
+/* AC-030: h2 "Field-ready operatives" — serif italic, --text-display-lg.
+   PRD §8: "--font-display italic at --text-display-lg" */
 .heading {
-  font-family: var(--lp-font-display);
+  font-family: var(--font-display);
   font-style: italic;
-  font-size: var(--lp-text-lg);
-  font-weight: var(--lp-weight-regular);
-  color: var(--lp-ink);
-  line-height: var(--lp-leading-tight);
+  font-size: var(--text-display-lg);
+  font-weight: var(--weight-regular);
+  color: var(--ink);
+  line-height: var(--leading-display-tight);
   margin: 0;
 }
 

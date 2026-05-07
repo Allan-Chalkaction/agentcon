@@ -1,6 +1,6 @@
 // OperativesGrid — Phase 3
 // AC-030: section header — "QUICK START TEMPLATES" kicker + h2 "Field-ready operatives"
-//         in serif italic (--lp-font-display italic, --lp-text-lg).
+//         in serif italic (--font-display italic, --text-display-lg).
 // AC-031: exactly 3 operative cards in order (Hawkeye, Echo, Ghost) from props.
 // AC-032: per-card content matches exact table in PRD §5 AC-032 (satisfied via seedOperatives).
 // AC-037: operatives prop drives render — no data hardcoded inside this component (seam check).

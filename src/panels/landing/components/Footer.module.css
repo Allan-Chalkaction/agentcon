@@ -1,19 +1,20 @@
 /* Footer — Phase 3
-   AC-038: thin footer row, mono font, faint ink, flex space-between. */
+   AC-038: thin footer row, mono font, faint ink, flex space-between.
+   Phase 2: all lp- prefixed tokens renamed to unified token names. */
 
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 16px var(--lp-page-pad-x);
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-xxs);
-  font-weight: var(--lp-weight-regular);
-  color: var(--lp-ink-faint);
+  padding: 16px var(--page-pad-x);
+  font-family: var(--font-mono);
+  font-size: var(--text-xxs);
+  font-weight: var(--weight-regular);
+  color: var(--ink-faint);
   letter-spacing: 0.06em;
-  border-top: var(--lp-border-hair);
-  background: var(--lp-surface-cream);
+  border-top: var(--border-hair);
+  background: var(--surface-cream);
 }
 
 .left {

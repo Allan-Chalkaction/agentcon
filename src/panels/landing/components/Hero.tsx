@@ -1,6 +1,6 @@
 // Hero — Phase 2
-// AC-018: h1 with two lines — "Brief once." (serif roman, --lp-ink) and
-//         "Deploy everywhere." (serif italic, --lp-accent-red).
+// AC-018: h1 with two lines — "Brief once." (serif roman, --ink) and
+//         "Deploy everywhere." (serif italic, --accent-red).
 //         EB Garamond Italic is bundled (EBGaramond-Italic.woff2 in Phase 1),
 //         so font-style:italic resolves to the real italic file, not synthetic obliquing.
 //         CONS-09 satisfied.

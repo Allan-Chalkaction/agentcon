@@ -1,3 +1,41 @@
+/* ─── Font face declarations (moved from tokens-landing.css in Phase 2) ─── */
+
+@font-face {
+  font-family: "EB Garamond";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/eb-garamond/EBGaramond-Regular.woff2") format("woff2");
+  unicode-range: U+0020-007F;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/eb-garamond/EBGaramond-Italic.woff2") format("woff2");
+  unicode-range: U+0020-007F;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2") format("woff2");
+  unicode-range: U+0020-007F;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/jetbrains-mono/JetBrainsMono-Medium.woff2") format("woff2");
+  unicode-range: U+0020-007F;
+}
+
 :root {
   /* === CHROME TOKENS === */
   /* Outer canvas: body background, title bar, sidebar, header, panel chrome */
@@ -103,8 +141,8 @@
   /* ─── Surfaces ─── */
   --surface-cream: #f1ead8;         /* main cream content surface */
   --surface-cream-soft: #ece4cf;    /* card backgrounds, file-card surface */
-  --feed-bg-dark: #131512;          /* recent-transmissions feed band (was --lp-surface-dark) */
-  --feed-bg-dark-soft: #1a1c19;     /* feed alt rows / borders on dark (was --lp-surface-dark-soft) */
+  --feed-bg-dark: #131512;          /* recent-transmissions feed band */
+  --feed-bg-dark-soft: #1a1c19;     /* feed alt rows / borders on dark */
 
   /* ─── Ink (text on cream) ─── */
   --ink: #1d1c19;                   /* primary ink on cream */
@@ -127,12 +165,12 @@
   /* Note: --text-xxs is new (10px); other sizes add display tiers distinct from chrome scale */
   --text-xxs: 10px;                 /* chrome labels (header bar, status bar) */
   --text-body-lg: 14px;             /* body paragraph (landing) — 14px collision resolution; chrome --text-base stays 13px */
-  --text-display-md: 18px;          /* operative card codename (was --lp-text-md, avoids collision with chrome --text-md 14px) */
-  --text-display-lg: 28px;          /* h2 "Field-ready operatives" (was --lp-text-lg) */
-  --text-display-xl: 56px;          /* h1 hero lines (was --lp-text-xl) */
+  --text-display-md: 18px;          /* operative card codename (avoids collision with chrome --text-md 14px) */
+  --text-display-lg: 28px;          /* h2 "Field-ready operatives" */
+  --text-display-xl: 56px;          /* h1 hero lines */
 
   /* ─── Typography: leading for display/content ─── */
-  --leading-display-tight: 1.05;    /* display headings (was --lp-leading-tight 1.05; distinct from chrome --leading-tight 1.3) */
+  --leading-display-tight: 1.05;    /* display headings (1.05; distinct from chrome --leading-tight 1.3) */
   --leading-mono: 1.5;              /* monospace UI leading */
 
   /* ─── Layout ─── */

@@ -9,6 +9,7 @@
    AC-014: Esc closes, no selection.
    AC-015: outside click closes.
    AC-016: hover/focus-visible/active states on trigger.
+   Phase 2: all lp- prefixed tokens renamed to unified token names.
    Phase 4 adds: .triggerOpen, .listbox, .option, .optionHighlighted, .chevronOpen. */
 
 /* ── Wrapper ── */
@@ -25,16 +26,16 @@
   align-items: center;
   gap: 8px;
   padding: 6px 10px;
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-xs);
-  font-weight: var(--lp-weight-regular);
-  color: var(--lp-ink-soft);
-  background: var(--lp-surface-cream);
-  border: var(--lp-border-hair);
-  border-radius: var(--lp-radius-card);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  color: var(--ink-soft);
+  background: var(--surface-cream);
+  border: var(--border-hair);
+  border-radius: var(--radius-card);
   cursor: default;
   letter-spacing: 0.04em;
-  line-height: var(--lp-leading-mono);
+  line-height: var(--leading-mono);
 
   /* Transition for open/close visual state change — gated by reduced-motion below */
   transition: background 120ms ease, border-color 120ms ease;
@@ -46,27 +47,27 @@
 
 /* AC-016: hover state — visually distinct from idle */
 .trigger:hover {
-  background: var(--lp-surface-cream-soft);
-  border-color: var(--lp-ink-faint);
+  background: var(--surface-cream-soft);
+  border-color: var(--ink-faint);
 }
 
-/* AC-016 / AC-010: focus-visible state — 2px outline in --lp-accent-red offset 2px.
+/* AC-016 / AC-010: focus-visible state — 2px outline in --accent-red offset 2px.
    Phase 2 already established this; keeping it here ensures no regression. */
 .trigger:focus-visible {
-  outline: 2px solid var(--lp-accent-red);
+  outline: 2px solid var(--accent-red);
   outline-offset: 2px;
 }
 
 /* AC-016: active state — visually distinct from hover */
 .trigger:active {
-  background: var(--lp-surface-cream-soft);
-  border-color: var(--lp-ink-soft);
+  background: var(--surface-cream-soft);
+  border-color: var(--ink-soft);
 }
 
 /* AC-016: open state — border reflects open condition */
 .triggerOpen {
-  background: var(--lp-surface-cream-soft);
-  border-color: var(--lp-ink-faint);
+  background: var(--surface-cream-soft);
+  border-color: var(--ink-faint);
 }
 
 /* ── Label parts ── */
@@ -75,17 +76,17 @@
 }
 
 .bracket {
-  color: var(--lp-ink-faint);
+  color: var(--ink-faint);
 }
 
 .value {
-  color: var(--lp-ink);
+  color: var(--ink);
 }
 
 /* ── Chevron ── */
 .chevron {
-  font-size: var(--lp-text-xxs);
-  color: var(--lp-ink-faint);
+  font-size: var(--text-xxs);
+  color: var(--ink-faint);
   line-height: 1;
   /* Rotate transition for open/close — gated by reduced-motion below */
   display: inline-block;
@@ -107,9 +108,9 @@
   list-style: none;
   margin: 0;
   padding: 4px 0;
-  background: var(--lp-surface-cream);
-  border: var(--lp-border-hair);
-  border-radius: var(--lp-radius-card);
+  background: var(--surface-cream);
+  border: var(--border-hair);
+  border-radius: var(--radius-card);
 
   /* Layered above page content */
   z-index: 100;
@@ -120,14 +121,14 @@
 
 /* ── Option (default state) ── */
 .option {
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-xs);
-  font-weight: var(--lp-weight-regular);
-  color: var(--lp-ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  color: var(--ink-soft);
   padding: 6px 12px;
   cursor: default;
   letter-spacing: 0.04em;
-  line-height: var(--lp-leading-mono);
+  line-height: var(--leading-mono);
 }
 
 /* ── Option highlighted (keyboard focus — AC-012 via aria-activedescendant) ──
@@ -135,8 +136,8 @@
    It is distinct from aria-selected (committed selection).
    Background uses cream-soft; text uses ink for legibility. */
 .optionHighlighted {
-  background: var(--lp-surface-cream-soft);
-  color: var(--lp-ink);
+  background: var(--surface-cream-soft);
+  color: var(--ink);
 }
 
 /* ── Reduced-motion gates ── */

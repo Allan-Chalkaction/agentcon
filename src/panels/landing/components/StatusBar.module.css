@@ -1,40 +1,41 @@
 /* StatusBar — Phase 2
    AC-005: four segments in mono on dark strip.
-   AC-006: sub-line in --lp-on-dark-soft.
-   Full-width dark-tone strip, no max-width constraint. */
+   AC-006: sub-line in --on-dark-soft.
+   Full-width dark-tone strip, no max-width constraint.
+   Phase 2: all lp- prefixed tokens renamed to unified token names. */
 
 .statusBar {
   width: 100%;
-  padding: 8px var(--lp-page-pad-x);
-  background: var(--lp-surface-dark-soft);
-  font-family: var(--lp-font-mono);
-  line-height: var(--lp-leading-mono);
+  padding: 8px var(--page-pad-x);
+  background: var(--feed-bg-dark-soft);
+  font-family: var(--font-mono);
+  line-height: var(--leading-mono);
 }
 
 .segmentRow {
   display: flex;
   align-items: center;
   gap: 0;
-  font-size: var(--lp-text-xxs);
-  color: var(--lp-on-dark);
+  font-size: var(--text-xxs);
+  color: var(--on-dark);
   letter-spacing: 0.05em;
 }
 
 .segment {
-  font-weight: var(--lp-weight-regular);
+  font-weight: var(--weight-regular);
 }
 
 .separator {
-  color: var(--lp-on-dark-soft);
+  color: var(--on-dark-soft);
   margin: 0 10px;
   user-select: none;
 }
 
 .subLine {
   margin-top: 4px;
-  font-size: var(--lp-text-xxs);
-  color: var(--lp-on-dark-soft);
-  font-weight: var(--lp-weight-regular);
+  font-size: var(--text-xxs);
+  color: var(--on-dark-soft);
+  font-weight: var(--weight-regular);
   letter-spacing: 0.03em;
 }
 

@@ -1,7 +1,7 @@
 // OperativeCard — Phase 3
 // AC-032: per-card content (index, class, status, codename h3, callsign, description,
 //         model, missions, DEPLOY button).
-// AC-033: top rule using single shared --lp-accent-red (CONS-12 — no per-card variants).
+// AC-033: top rule using single shared --accent-red (CONS-12 — no per-card variants).
 // AC-034: Deploy button — <button type="button">, aria-label="Deploy <codename>",
 //         visible text "DEPLOY" in mono font.
 // AC-036 seam: click invokes onDeploy(operative.id) if prop provided;
@@ -39,7 +39,7 @@ export function OperativeCard({ operative, onDeploy }: OperativeCardProps) {
       data-testid={`operative-card-${operative.id}`}
       aria-label={`Operative: ${operative.codename}`}
     >
-      {/* AC-033: top rule — single shared --lp-accent-red (CONS-12, ADR D8) */}
+      {/* AC-033: top rule — single shared --accent-red (CONS-12, ADR D8) */}
       <div className={styles.topRule} aria-hidden="true" />
 
       {/* Index label */}

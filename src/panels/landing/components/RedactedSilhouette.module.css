@@ -1,5 +1,6 @@
 /* RedactedSilhouette — Phase 3
-   AC-022: photo slot with silhouette SVG + REDACTED caption. */
+   AC-022: photo slot with silhouette SVG + REDACTED caption.
+   Phase 2: all lp- prefixed tokens renamed to unified token names. */
 
 /* Outer wrapper — contains photo background + caption */
 .photoSlot {
@@ -14,9 +15,9 @@
 .photoBackground {
   width: 120px;
   height: 120px;
-  background: var(--lp-surface-dark-soft);
-  border: var(--lp-border-card);
-  border-radius: var(--lp-radius-card);
+  background: var(--feed-bg-dark-soft);
+  border: var(--border-card);
+  border-radius: var(--radius-card);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -28,15 +29,15 @@
   width: 100%;
   height: 100%;
   /* currentColor inherits from .photoBackground / .photoSlot color context */
-  color: var(--lp-ink-soft);
+  color: var(--ink-soft);
 }
 
 /* AC-022: "REDACTED" caption — separate DOM element, not inside SVG */
 .caption {
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-xs);
-  font-weight: var(--lp-weight-regular);
-  color: var(--lp-ink-faint);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  color: var(--ink-faint);
   letter-spacing: 0.1em;
   text-align: center;
   margin: 0;

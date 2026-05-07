@@ -12,7 +12,6 @@
 // ADR: docs/pipeline/2026-05-03/test-run-landing-page/ADR.md §D1, §D3, §D4
 
 import { useState } from "react";
-import "../../styles/tokens-landing.css";
 import styles from "./LandingPage.module.css";
 
 import { HeaderBar } from "./components/HeaderBar";
@@ -38,11 +37,11 @@ export function LandingPage() {
   );
 
   return (
-    // .landing-root is a plain class string (not a CSS module class).
-    // tokens-landing.css scopes all --lp-* tokens under .landing-root and
-    // declares position:absolute/inset:0/overflow-y:auto so the landing
-    // surface can scroll while the global overflow:hidden stays untouched.
-    // ADR §D2 (token scoping), §D3 (overflow scoping).
+    // .landing-root is a plain class string (not a CSS module class) — CONS-14.
+    // LandingPage.module.css declares :global(.landing-root) with scroll-container
+    // styles (position:absolute/inset:0/overflow-y:auto) so the landing surface
+    // can scroll while the global overflow:hidden stays untouched.
+    // ADR §D11 (overflow scoping), Phase 2 (token rename).
     <div className="landing-root" data-testid="landing-page">
       <div className={styles.page}>
         {/* Header bar region — Phase 2 */}

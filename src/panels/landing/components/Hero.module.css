@@ -1,7 +1,10 @@
 /* Hero — Phase 2
    AC-018: h1 display typography, EB Garamond regular + italic.
    AC-019: body paragraph.
-   AC-020: eyebrow kicker + metadata in mono. */
+   AC-020: eyebrow kicker + metadata in mono.
+   Phase 2: all lp- prefixed tokens renamed to unified token names.
+   Special cases: text-base → text-body-lg; text-xl → text-display-xl;
+                  leading-tight → leading-display-tight. */
 
 .hero {
   padding: 48px 0 56px;
@@ -13,44 +16,44 @@
   align-items: center;
   gap: 24px;
   margin-bottom: 24px;
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-xs);
-  font-weight: var(--lp-weight-regular);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
   letter-spacing: 0.06em;
 }
 
 .kicker {
-  color: var(--lp-ink-soft);
+  color: var(--ink-soft);
 }
 
 .meta {
-  color: var(--lp-ink-faint);
+  color: var(--ink-faint);
 }
 
 /* AC-018: h1 display headline */
 .headline {
   display: flex;
   flex-direction: column;
-  font-family: var(--lp-font-display);
-  font-size: var(--lp-text-xl);
-  font-weight: var(--lp-weight-regular);
-  line-height: var(--lp-leading-tight);
+  font-family: var(--font-display);
+  font-size: var(--text-display-xl);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-display-tight);
   margin: 0 0 32px;
 }
 
 /* Line 1: "Brief once." — roman, dark ink */
 .headlineLine1 {
   font-style: normal;
-  color: var(--lp-ink);
+  color: var(--ink);
 }
 
 /* Line 2: "Deploy everywhere." — italic, red accent.
-   EB Garamond Italic woff2 is registered via @font-face in tokens-landing.css
+   EB Garamond Italic woff2 is registered via @font-face in tokens.css
    with font-style:italic. The browser uses the real italic file, not synthetic
    obliquing. CONS-09 satisfied. */
 .headlineLine2 {
   font-style: italic;
-  color: var(--lp-accent-red);
+  color: var(--accent-red);
 }
 
 /* AC-019: body paragraph */
@@ -58,9 +61,9 @@
   /* Inherits system-sans from body (settings panel convention).
      Per PRD §8 UI Requirements hero note: "Body paragraph in default sans
      inherited from body" — we do not override font-family here. */
-  font-size: var(--lp-text-base);
-  line-height: var(--lp-leading-normal);
-  color: var(--lp-ink-soft);
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-normal);
+  color: var(--ink-soft);
   max-width: 480px;
   margin: 0;
 }

@@ -4,7 +4,8 @@
    AC-027: 4 rows rendered from seeded array.
    AC-028: empty-state placeholder.
    AC-029: LIVE indicator is CSS-only — no JS animation (no keyframe on JS side).
-   AC-042 note: prefers-reduced-motion rule disables the LIVE pulse animation. */
+   AC-042 note: prefers-reduced-motion rule disables the LIVE pulse animation.
+   Phase 2: all lp- prefixed tokens renamed to unified token names. */
 
 /* Full-width dark band — background is set by LandingPage.module.css .regionTransmissions */
 .feed {
@@ -13,10 +14,10 @@
 
 /* Centered content column — matches the page content-width */
 .inner {
-  max-width: var(--lp-content-max);
+  max-width: var(--content-max);
   width: 100%;
   margin: 0 auto;
-  padding: 0 var(--lp-page-pad-x);
+  padding: 0 var(--page-pad-x);
 }
 
 /* AC-025: header row */
@@ -25,25 +26,25 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
-  border-bottom: 1px solid var(--lp-surface-dark-soft);
+  border-bottom: 1px solid var(--feed-bg-dark-soft);
   padding-bottom: 16px;
 }
 
 /* "// RECENT TRANSMISSIONS" title */
 .title {
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-sm);
-  font-weight: var(--lp-weight-regular);
-  color: var(--lp-on-dark);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  color: var(--on-dark);
   letter-spacing: 0.06em;
 }
 
 /* AC-025: LIVE indicator — green accent, with CSS-only opacity pulse */
 .liveIndicator {
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-xs);
-  font-weight: var(--lp-weight-regular);
-  color: var(--lp-accent-green);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  color: var(--accent-green);
   letter-spacing: 0.08em;
   display: flex;
   align-items: center;
@@ -54,7 +55,7 @@
    AC-042: disabled when prefers-reduced-motion: reduce is set. */
 .liveDot {
   display: inline-block;
-  animation: livePulse var(--lp-pulse-duration) ease-in-out infinite;
+  animation: livePulse var(--pulse-duration) ease-in-out infinite;
 }
 
 @keyframes livePulse {
@@ -85,10 +86,10 @@
   align-items: baseline;
   gap: 0;
   padding: 10px 0;
-  border-bottom: 1px solid var(--lp-surface-dark-soft);
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-sm);
-  line-height: var(--lp-leading-mono);
+  border-bottom: 1px solid var(--feed-bg-dark-soft);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-mono);
 }
 
 .row:last-child {
@@ -97,33 +98,33 @@
 
 /* AC-026: timestamp — mono, secondary on-dark color */
 .timestamp {
-  color: var(--lp-on-dark-soft);
+  color: var(--on-dark-soft);
   flex-shrink: 0;
   min-width: 80px;
 }
 
 /* AC-026: separator — mono, muted */
 .separator {
-  color: var(--lp-on-dark-soft);
+  color: var(--on-dark-soft);
   white-space: pre;
 }
 
 /* AC-026: codename — green accent */
 .codename {
-  color: var(--lp-accent-green);
+  color: var(--accent-green);
   flex-shrink: 0;
 }
 
 /* AC-026: action description — primary on-dark text */
 .action {
-  color: var(--lp-on-dark);
+  color: var(--on-dark);
 }
 
 /* AC-028: empty state placeholder */
 .emptyState {
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-sm);
-  color: var(--lp-on-dark-soft);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--on-dark-soft);
   padding: 16px 0;
   letter-spacing: 0.04em;
 }

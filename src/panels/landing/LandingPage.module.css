@@ -1,14 +1,30 @@
 /* Landing page layout — consumed inside .landing-root scroll container */
-/* Token source: tokens-landing.css scoped under .landing-root */
+/* Token source: tokens.css under === CONTENT TOKENS === (Phase 2 rename complete) */
 /* Phase 1: base layout and region stubs.
+   Phase 2: atomic rename — all lp- prefixed tokens replaced with unified token names;
+            scroll-container styles moved here from deleted tokens-landing.css.
    Phase 4 adds: responsive breakpoints (AC-045), prefers-reduced-motion (AC-042). */
+
+/* ── Scroll container (moved from tokens-landing.css .landing-root rule) ──────
+   CONS-14: the class string "landing-root" is preserved unchanged in LandingPage.tsx.
+   The styles that were scoped to .landing-root in tokens-landing.css are now declared
+   here as :global(.landing-root) so they apply to the plain class string.
+   D11: global overflow:hidden on html/body/#root is preserved; .landing-root provides
+   its own scroll context inside the overflow:hidden chrome (position:absolute; inset:0). */
+:global(.landing-root) {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--surface-cream);
+}
 
 .page {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  color: var(--lp-ink);
-  font-family: var(--lp-font-mono);
+  color: var(--ink);
+  font-family: var(--font-mono);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* Prevent horizontal overflow at any viewport width in the 1024–1680 range.
@@ -31,36 +47,36 @@
 }
 
 .regionProject {
-  max-width: var(--lp-content-max);
+  max-width: var(--content-max);
   width: 100%;
   margin: 0 auto;
-  padding: 0 var(--lp-page-pad-x);
+  padding: 0 var(--page-pad-x);
 }
 
 .regionHero {
-  max-width: var(--lp-content-max);
+  max-width: var(--content-max);
   width: 100%;
   margin: 0 auto;
-  padding: 0 var(--lp-page-pad-x);
+  padding: 0 var(--page-pad-x);
 }
 
 .regionPersonnel {
-  max-width: var(--lp-content-max);
+  max-width: var(--content-max);
   width: 100%;
   margin: 0 auto;
-  padding: 0 var(--lp-page-pad-x);
+  padding: 0 var(--page-pad-x);
 }
 
 .regionTransmissions {
   width: 100%;
-  background: var(--lp-surface-dark);
+  background: var(--feed-bg-dark);
 }
 
 .regionOperatives {
-  max-width: var(--lp-content-max);
+  max-width: var(--content-max);
   width: 100%;
   margin: 0 auto;
-  padding: 0 var(--lp-page-pad-x);
+  padding: 0 var(--page-pad-x);
 }
 
 .regionFooter {
@@ -72,7 +88,7 @@
    ADR D11: viewport range is 1024px to 1680px.
    QA tests at: 1024, 1280, 1680.
    Strategy:
-   - At ≥1280px: full padding (var(--lp-page-pad-x) = 64px each side).
+   - At ≥1280px: full padding (var(--page-pad-x) = 64px each side).
    - At 1024–1279px: reduced padding (24px each side).
      At 1024px: content width = 1024 - 48 = 976px. With max-width: 1200px,
      content is 976px — all three operative cards fit (≈325px each).
@@ -91,7 +107,7 @@
   }
 }
 
-/* 1280–1680px: full padding (default, set above via var(--lp-page-pad-x)). */
+/* 1280–1680px: full padding (default, set above via var(--page-pad-x)). */
 /* No rule needed — defaults apply. */
 
 /* ── Prefers-reduced-motion (AC-042) ─────────────────────────────────────────

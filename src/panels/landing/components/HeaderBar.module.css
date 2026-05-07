@@ -1,35 +1,36 @@
 /* HeaderBar — Phase 2
    AC-004: AGENTCON / FILE 0427-A / 2026-04-30, monospace UI font.
-   Full-width thin row, cream background, hairline bottom border. */
+   Full-width thin row, cream background, hairline bottom border.
+   Phase 2: all lp- prefixed tokens renamed to unified token names. */
 
 .header {
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 8px var(--lp-page-pad-x);
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-xxs);
-  line-height: var(--lp-leading-mono);
-  border-bottom: var(--lp-border-hair);
-  background: var(--lp-surface-cream);
+  padding: 8px var(--page-pad-x);
+  font-family: var(--font-mono);
+  font-size: var(--text-xxs);
+  line-height: var(--leading-mono);
+  border-bottom: var(--border-hair);
+  background: var(--surface-cream);
   letter-spacing: 0.06em;
 }
 
 .appName {
-  font-weight: var(--lp-weight-medium);
-  color: var(--lp-ink);
+  font-weight: var(--weight-medium);
+  color: var(--ink);
   margin-right: 20px;
 }
 
 .fileId {
-  font-weight: var(--lp-weight-regular);
-  color: var(--lp-ink-faint);
+  font-weight: var(--weight-regular);
+  color: var(--ink-faint);
   flex: 1;
 }
 
 .date {
-  font-weight: var(--lp-weight-regular);
-  color: var(--lp-ink-faint);
+  font-weight: var(--weight-regular);
+  color: var(--ink-faint);
 }
 
 @media (max-width: 1279px) {

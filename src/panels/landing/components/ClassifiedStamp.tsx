@@ -2,10 +2,10 @@
 // AC-023: CLASSIFIED stamp overlaid on PersonnelFileCard.
 //   - Inline SVG component (ADR §D5 — no raster, no external SVG file).
 //   - CSS rotation transform between -20deg and -10deg (using -15deg per PRD §8).
-//   - Red accent color from --lp-accent-red token.
+//   - Red accent color from --accent-red token (renamed from accent-red in Phase 2).
 //   - Literal text content "CLASSIFIED" (verifiable in DOM per ADR §D5).
 //   - Stroked rect border, no fill. Centered text with wide letter-spacing.
-// Tokenable: fill references var(--lp-accent-red) via CSS custom property on the SVG.
+// Tokenable: fill references var(--accent-red) via CSS custom property on the SVG.
 //
 // Phase 4 a11y fix (Reviewer HIGH): removed role="img" from <svg> — it was contradictory
 // with aria-hidden="true". aria-hidden removes the element from the AT; role="img" would
@@ -31,7 +31,7 @@ export function ClassifiedStamp() {
         width="232"
         height="72"
         fill="none"
-        stroke="var(--lp-accent-red)"
+        stroke="var(--accent-red)"
         strokeWidth="3"
       />
       {/* Inner rect for double-border effect matching dossier stamp aesthetic */}
@@ -41,7 +41,7 @@ export function ClassifiedStamp() {
         width="222"
         height="62"
         fill="none"
-        stroke="var(--lp-accent-red)"
+        stroke="var(--accent-red)"
         strokeWidth="1"
         opacity="0.6"
       />
@@ -51,7 +51,7 @@ export function ClassifiedStamp() {
         y="48"
         textAnchor="middle"
         dominantBaseline="middle"
-        fill="var(--lp-accent-red)"
+        fill="var(--accent-red)"
         fontSize="22"
         fontWeight="600"
         letterSpacing="8"

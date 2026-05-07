@@ -1,7 +1,7 @@
 // RedactedSilhouette — Phase 3
 // AC-022: redacted-photo element (inline SVG silhouette) + "REDACTED" caption.
 //   - Inline SVG component (ADR §D5 — no raster image, no external SVG file).
-//   - Human-bust silhouette (head + shoulders) as <path>, filled with --lp-ink-soft.
+//   - Human-bust silhouette (head + shoulders) as <path>, filled with --ink-soft.
 //   - Slightly desaturated rectangle background (photo-slot background via CSS class).
 //   - "REDACTED" caption is a SEPARATE DOM element adjacent to the SVG (not inside it),
 //     so QA can query it as text content per PRD §9 Phase 3 implementation notes.

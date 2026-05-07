@@ -1,14 +1,15 @@
 /* PersonnelFileCard — Phase 3
    AC-021: labeled field table, mono labels + values.
    AC-022: REDACTED photo slot.
-   AC-023: CLASSIFIED stamp absolutely positioned, rotated. */
+   AC-023: CLASSIFIED stamp absolutely positioned, rotated.
+   Phase 2: all lp- prefixed tokens renamed to unified token names. */
 
 /* Card root — position:relative required for absolutely-positioned stamp */
 .card {
   position: relative;
-  background: var(--lp-surface-cream-soft);
-  border: var(--lp-border-card);
-  border-radius: var(--lp-radius-card);
+  background: var(--surface-cream-soft);
+  border: var(--border-card);
+  border-radius: var(--radius-card);
   padding: 32px;
   /* Card is sized to content; max-width keeps it from spanning too wide */
   max-width: 560px;
@@ -43,10 +44,10 @@
 
 /* AC-021: labels — uppercase, mono, secondary ink, small size */
 .fieldLabel {
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-xs);
-  font-weight: var(--lp-weight-regular);
-  color: var(--lp-ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  color: var(--ink-soft);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   /* Fixed width so values align */
@@ -56,10 +57,10 @@
 
 /* AC-021: values — mono, primary ink */
 .fieldValue {
-  font-family: var(--lp-font-mono);
-  font-size: var(--lp-text-sm);
-  font-weight: var(--lp-weight-regular);
-  color: var(--lp-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  color: var(--ink);
   margin: 0;
 }
 
