@@ -10,6 +10,7 @@
 import { useState } from "react";
 import { ClaudeSettingsPanel } from "./panels/claude-settings/ClaudeSettingsPanel";
 import { LandingPage } from "./panels/landing/LandingPage";
+import styles from "./App.module.css";
 
 type Surface = "settings" | "landing";
 
@@ -27,25 +28,12 @@ export default function App() {
       {surface === "settings" ? <ClaudeSettingsPanel /> : <LandingPage />}
 
       {/* Dev-only surface switcher button — structurally absent in production builds */}
+      {/* Phase 3: replaced inline hex style with App.module.css .devSwitch class (ADR D14, AC-010–AC-014) */}
       {import.meta.env.DEV && (
         <button
           type="button"
+          className={styles.devSwitch}
           onClick={() => setSurface((s) => (s === "settings" ? "landing" : "settings"))}
-          style={{
-            position: "fixed",
-            top: 8,
-            right: 8,
-            zIndex: 9999,
-            padding: "4px 10px",
-            fontSize: 11,
-            fontFamily: "monospace",
-            background: "#1a1c19",
-            color: "#d8d2bf",
-            border: "1px solid #4a4742",
-            borderRadius: 3,
-            cursor: "pointer",
-            opacity: 0.85,
-          }}
         >
           {surface === "settings" ? "→ landing" : "→ settings"}
         </button>

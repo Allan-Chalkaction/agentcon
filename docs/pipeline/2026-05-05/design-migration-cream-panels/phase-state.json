@@ -19,13 +19,13 @@
     },
     {
       "id": "2",
-      "name": "Atomic rename \u2014 landing flips to unified tokens",
+      "name": "Atomic rename — landing flips to unified tokens",
       "status": "REVIEWER_PASSED"
     },
     {
       "id": "3",
       "name": "Dev-switch button re-themed (App.tsx)",
-      "status": "PENDING"
+      "status": "REVIEWER_PASSED"
     },
     {
       "id": "4",
@@ -39,8 +39,8 @@
     }
   ],
   "active_phase": {
-    "id": "2",
-    "name": "Atomic rename \u2014 landing flips to unified tokens",
-    "status": "REVIEWER_PASSED"
+    "id": "4",
+    "name": "Settings panel re-theme",
+    "status": "PENDING"
   }
 }
