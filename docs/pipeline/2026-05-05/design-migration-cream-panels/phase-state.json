@@ -30,7 +30,12 @@
     {
       "id": "4",
       "name": "Settings panel re-theme",
-      "status": "PENDING"
+      "status": "REVIEWER_PASSED",
+      "judgment_failures": 1,
+      "attempt": 2,
+      "qa_findings": "docs/pipeline/2026-05-05/design-migration-cream-panels/qa/phase-04-attempt-1-findings.md",
+      "qa_verdict": "docs/pipeline/2026-05-05/design-migration-cream-panels/qa/phase-04-attempt-2-verdict.md",
+      "reviewer_verdict": "docs/pipeline/2026-05-05/design-migration-cream-panels/reviewer/phase-04-attempt-1-verdict.md"
     },
     {
       "id": "5",
@@ -41,6 +46,9 @@
   "active_phase": {
     "id": "4",
     "name": "Settings panel re-theme",
-    "status": "PENDING"
+    "status": "REVIEWER_PASSED",
+    "judgment_failures": 1,
+    "attempt": 2,
+    "next_action": "Commit Phase 4 changeset per CONS-17; open Phase 5"
   }
 }

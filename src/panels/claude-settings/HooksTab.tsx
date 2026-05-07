@@ -132,7 +132,8 @@ export function HooksTab() {
         <HookPresetsSection draft={draft} setDraft={setDraft} setEvent={setEvent} />
         <div className={styles.formField}>
           <label className={styles.formLabel}>Lifecycle event</label>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+          {/* AC-008: chipGroup container gets --border-panel-strong (ADR D13 / CONS-10) */}
+          <div className={styles.chipGroup}>
             {EVENTS.map((e) => {
               const count = (draft[e.id] ?? []).length;
               return (
@@ -142,9 +143,9 @@ export function HooksTab() {
                   title={e.hint}
                   onClick={() => setEvent(e.id)}
                   className={
-                    event === e.id ? styles.railItemActive : styles.railItem
+                    /* AC-017: CSS class swap chip ↔ chipSelected; locked class name = chipSelected (ADR D13 / §8.9) */
+                    event === e.id ? styles.chipSelected : styles.chip
                   }
-                  style={{ padding: "4px 10px" }}
                 >
                   {e.id}
                   {count > 0 && (
@@ -152,7 +153,7 @@ export function HooksTab() {
                       style={{
                         marginLeft: 6,
                         fontSize: "var(--text-xs)",
-                        color: "var(--text-muted)",
+                        color: "var(--ink-faint)",
                       }}
                     >
                       ({count})
@@ -169,7 +170,8 @@ export function HooksTab() {
 
         <div className={styles.itemList}>
           {groups.length === 0 && (
-            <div className={styles.itemDescription}>
+            /* AC-023–AC-025: solid border, 1.5px, --empty-state-border-color; replaces heavy dashed treatment */
+            <div className={styles.hookEmptyState}>
               No hooks configured for <code>{event}</code> at this scope.
             </div>
           )}
@@ -263,10 +265,10 @@ function HookEntryEditor({
   return (
     <div
       style={{
-        background: "var(--bg-input)",
+        background: "var(--surface-cream-soft)",
         borderRadius: "var(--radius-md)",
         padding: 12,
-        border: "var(--border-width) solid var(--border-default)",
+        border: "var(--border-panel-strong)",
       }}
     >
       <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 8 }}>

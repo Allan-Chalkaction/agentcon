@@ -58,12 +58,10 @@
   --text-muted: #5b6577;       /* placeholders, disabled */
   --text-inverse: #0a0c10;     /* text on accent backgrounds */
 
-  /* ─── Colors: accents (chrome — replaced by --accent-red in Phase 4) ─── */
-  --accent-primary: #5b8def;   /* primary buttons, links, focus rings */
-  --accent-primary-hover: #7aa4f5;
-  --accent-primary-bg: rgba(91, 141, 239, 0.12);
-
   /* ─── Colors: state ─── */
+  /* NOTE: --accent-primary, --accent-primary-hover, --accent-primary-bg were here.
+     Removed in Phase 4 per AC-005 / ADR D6. Settings consumers now use --accent-red
+     siblings; :focus-visible and ::selection already use --accent-red* since Phase 3. */
   --color-success: #4ade80;    /* daemon running, db connected */
   --color-warning: #fbbf24;    /* starting, transitioning */
   --color-danger: #f87171;     /* daemon dead, errors */

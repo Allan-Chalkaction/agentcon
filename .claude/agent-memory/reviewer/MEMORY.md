@@ -1,0 +1,1 @@
+- [Agentcon project patterns](project_agentcon_patterns.md) — Phase 1 confirmed correct patterns + fast-scan items for Phases 2-4

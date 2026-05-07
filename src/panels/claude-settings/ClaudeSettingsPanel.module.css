@@ -1,18 +1,26 @@
+/* ─── Panel shell ─── */
+/* AC-053: .shell overrides body's dark chrome with cream surface + ink text */
+
 .shell {
   display: flex;
   flex-direction: column;
   flex: 1;
   min-height: 0;
-  background: var(--bg-base);
+  height: 100%;
+  background: var(--surface-cream);
+  color: var(--ink);
+  border: var(--border-panel-strong);
 }
+
+/* ─── Scope bar ─── */
 
 .scopeBar {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   padding: var(--space-4) var(--space-6);
-  border-bottom: var(--border-width) solid var(--border-default);
-  background: var(--bg-base);
+  border-bottom: var(--border-panel-strong);
+  background: var(--surface-cream);
 }
 
 .scopeTabs {
@@ -36,7 +44,7 @@
 }
 
 .scopeTab:hover:not(:disabled) {
-  background: var(--bg-elevated);
+  background: var(--surface-cream-soft);
 }
 
 .scopeTab:disabled {
@@ -45,20 +53,20 @@
 }
 
 .scopeTabActive {
-  background: var(--bg-elevated);
-  border-color: var(--accent-primary);
+  background: var(--surface-cream-soft);
+  border-color: var(--border-panel-strong-color);
 }
 
 .scopeTabLabel {
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
 .scopeTabHint {
   font-size: var(--text-xs);
   font-family: var(--font-mono);
-  color: var(--text-muted);
+  color: var(--ink-soft);
 }
 
 .scopeMeta {
@@ -72,20 +80,27 @@
 }
 
 .scopeMetaLabel {
-  color: var(--text-muted);
+  color: var(--ink-faint);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .scopeMetaValue {
-  color: var(--text-secondary);
+  color: var(--ink-soft);
 }
+
+/* ─── Body layout ─── */
 
 .body {
   display: flex;
   flex: 1;
   min-height: 0;
 }
+
+/* ─── Left rail nav ─── */
+/* NOTE: .railItem/.railItemActive serve the left rail nav AND MatcherInput buttons.
+   Do NOT remove these classes. Lifecycle-event chips use .chip/.chipSelected instead
+   (per ADR D13; CONS-07). */
 
 .rail {
   display: flex;
@@ -94,15 +109,16 @@
   width: 180px;
   flex-shrink: 0;
   padding: var(--space-3);
-  border-right: var(--border-width) solid var(--border-default);
+  border-right: var(--border-panel-strong);
   overflow-y: auto;
+  background: var(--surface-cream);
 }
 
 .railItem,
 .railItemActive {
   padding: var(--space-2) var(--space-3);
   font-size: var(--text-sm);
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   background: transparent;
   border-radius: var(--radius-md);
   text-align: left;
@@ -111,8 +127,8 @@
 }
 
 .railItem:hover:not(:disabled) {
-  background: var(--bg-elevated);
-  color: var(--text-primary);
+  background: var(--surface-cream-soft);
+  color: var(--ink);
 }
 
 .railItem:disabled {
@@ -121,10 +137,12 @@
 }
 
 .railItemActive {
-  background: var(--bg-elevated);
-  color: var(--text-primary);
+  background: var(--surface-cream-soft);
+  color: var(--ink);
   font-weight: var(--weight-medium);
 }
+
+/* ─── Editor pane ─── */
 
 .editor {
   flex: 1;
@@ -135,26 +153,37 @@
   overflow: hidden;
 }
 
+/* ─── Tab header ─── */
+
 .tabHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-4);
   padding: var(--space-5) var(--space-6) var(--space-3);
-  border-bottom: var(--border-width) solid var(--border-default);
+  border-bottom: var(--border-panel-strong);
 }
 
+/* ─── Tab title typography (AC-015, AC-016 — mockup issue #1) ─── */
+/* font-family: --font-mono (JetBrains Mono), font-style: normal (not italic),   */
+/* font-weight: 500, font-size: --text-md (14px), text-transform: uppercase,     */
+/* letter-spacing: 0.04em. Serif italic is reserved for hero treatments only.    */
+
 .tabTitle {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-weight: 500;
   font-size: var(--text-md);
-  font-weight: var(--weight-semibold);
-  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink);
   margin: 0;
 }
 
 .tabSubtitle {
   font-size: var(--text-xs);
   font-family: var(--font-mono);
-  color: var(--text-muted);
+  color: var(--ink-faint);
   margin: 2px 0 0;
 }
 
@@ -163,6 +192,8 @@
   gap: var(--space-2);
   flex-shrink: 0;
 }
+
+/* ─── Tab body (scroll container — AC-051 / ADR D11) ─── */
 
 .tabBody {
   flex: 1;
@@ -179,6 +210,8 @@
   flex-direction: column;
 }
 
+/* ─── Generic empty state (panel-level) ─── */
+
 .emptyState {
   margin: auto;
   max-width: 420px;
@@ -189,30 +222,33 @@
 .emptyTitle {
   font-size: var(--text-md);
   font-weight: var(--weight-semibold);
-  color: var(--text-primary);
+  color: var(--ink);
   margin-bottom: var(--space-2);
 }
 
 .emptyHint {
   font-size: var(--text-sm);
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   line-height: var(--leading-relaxed);
   margin: 0;
 }
 
+/* ─── Buttons ─── */
+
+/* Primary — AC-005 binding: --accent-red replaces --accent-primary */
 .button {
   padding: var(--space-2) var(--space-4);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
-  background: var(--accent-primary);
-  color: var(--text-inverse);
+  background: var(--accent-red);
+  color: var(--surface-cream);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: background var(--transition-fast);
 }
 
 .button:hover:not(:disabled) {
-  background: var(--accent-primary-hover);
+  background: var(--accent-red-hover);
 }
 
 .button:disabled {
@@ -220,20 +256,21 @@
   cursor: not-allowed;
 }
 
+/* Secondary */
 .buttonSecondary {
   padding: var(--space-2) var(--space-3);
   font-size: var(--text-sm);
-  color: var(--text-secondary);
-  background: var(--bg-elevated);
-  border: var(--border-width) solid var(--border-default);
+  color: var(--ink-soft);
+  background: var(--surface-cream-soft);
+  border: var(--border-panel-strong);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: background var(--transition-fast);
 }
 
 .buttonSecondary:hover:not(:disabled) {
-  background: var(--bg-input);
-  color: var(--text-primary);
+  background: var(--surface-cream);
+  color: var(--ink);
 }
 
 .buttonSecondary:disabled {
@@ -241,6 +278,7 @@
   cursor: not-allowed;
 }
 
+/* Danger */
 .buttonDanger {
   padding: var(--space-2) var(--space-3);
   font-size: var(--text-sm);
@@ -255,10 +293,12 @@
   background: rgba(248, 113, 113, 0.08);
 }
 
+/* ─── Status line ─── */
+
 .statusLine {
   font-size: var(--text-xs);
   font-family: var(--font-mono);
-  color: var(--text-muted);
+  color: var(--ink-faint);
   margin-left: auto;
   align-self: center;
 }
@@ -267,16 +307,23 @@
   color: var(--color-success);
 }
 
+/* ─── Error/alert banner (AC-043, AC-044) ─── */
+/* AC-044: alert containers are panels — they get --border-panel-strong treatment. */
+/* AC-043: background, color, border from alert tokens; contrast ≥4.5:1 verified. */
+/* --alert-text #7a2418 on --alert-bg #f7e8d6: luminance ratio ≈8.4:1 (ADR D7).  */
+
 .errorBanner {
   margin: var(--space-3) var(--space-6);
   padding: var(--space-3);
   font-size: var(--text-sm);
-  color: var(--color-danger);
-  background: rgba(248, 113, 113, 0.08);
+  background: var(--alert-bg);
+  color: var(--alert-text);
+  border: var(--border-panel-strong);
+  border-color: var(--alert-border);
   border-radius: var(--radius-md);
 }
 
-/* Lists */
+/* ─── Lists ─── */
 
 .itemList {
   display: flex;
@@ -284,25 +331,26 @@
   gap: var(--space-2);
 }
 
+/* AC-008: project-scope cards / preset cards get --border-panel-strong treatment */
 .itemRow {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
   padding: var(--space-3);
-  background: var(--bg-elevated);
-  border: var(--border-width) solid var(--border-default);
+  background: var(--surface-cream-soft);
+  border: var(--border-panel-strong);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: border-color var(--transition-fast);
 }
 
 .itemRow:hover {
-  border-color: var(--accent-primary);
+  border-color: var(--border-panel-strong-color);
 }
 
 .itemRowSelected {
-  border-color: var(--accent-primary);
-  background: var(--bg-input);
+  border-color: var(--border-panel-strong-color);
+  background: var(--surface-cream);
 }
 
 .itemTitle {
@@ -311,20 +359,22 @@
   gap: var(--space-2);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
 .itemMeta {
   font-size: var(--text-xs);
   font-family: var(--font-mono);
-  color: var(--text-muted);
+  color: var(--ink-faint);
 }
 
 .itemDescription {
   font-size: var(--text-sm);
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   line-height: var(--leading-snug);
 }
+
+/* ─── Form controls ─── */
 
 .formField {
   display: flex;
@@ -338,23 +388,24 @@
   font-weight: var(--weight-medium);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--text-muted);
+  color: var(--ink-faint);
 }
 
 .formInput {
-  background: var(--bg-input);
-  border: var(--border-width) solid var(--border-default);
+  background: var(--surface-cream-soft);
+  border: var(--border-panel-strong);
   border-radius: var(--radius-md);
   padding: var(--space-2) var(--space-3);
   font-size: var(--text-sm);
   font-family: var(--font-mono);
-  color: var(--text-primary);
+  color: var(--ink);
   outline: none;
   transition: border-color var(--transition-fast);
 }
 
+/* AC-005: focus border uses --accent-red (replaces --accent-primary) */
 .formInput:focus {
-  border-color: var(--accent-primary);
+  border-color: var(--accent-red);
 }
 
 .formTextarea {
@@ -366,8 +417,10 @@
 
 .formHint {
   font-size: var(--text-xs);
-  color: var(--text-muted);
+  color: var(--ink-faint);
 }
+
+/* ─── Rule inputs ─── */
 
 .ruleRow {
   display: flex;
@@ -378,24 +431,27 @@
 
 .ruleInput {
   flex: 1;
-  background: var(--bg-input);
-  border: var(--border-width) solid var(--border-default);
+  background: var(--surface-cream-soft);
+  border: var(--border-panel-strong);
   border-radius: var(--radius-md);
   padding: var(--space-2) var(--space-3);
   font-size: var(--text-sm);
   font-family: var(--font-mono);
-  color: var(--text-primary);
+  color: var(--ink);
   outline: none;
 }
 
+/* AC-005: focus border uses --accent-red (replaces --accent-primary) */
 .ruleInput:focus {
-  border-color: var(--accent-primary);
+  border-color: var(--accent-red);
 }
 
 .ruleInputInvalid {
   composes: ruleInput;
   border-color: var(--color-danger);
 }
+
+/* ─── Rule list groups ─── */
 
 .ruleListGroup {
   margin-bottom: var(--space-5);
@@ -407,15 +463,17 @@
   gap: var(--space-2);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
-  color: var(--text-primary);
+  color: var(--ink);
   margin-bottom: var(--space-2);
 }
 
 .ruleListBadge {
   font-size: var(--text-xs);
   font-family: var(--font-mono);
-  color: var(--text-muted);
+  color: var(--ink-faint);
 }
+
+/* ─── Icon button ─── */
 
 .iconButton {
   width: 32px;
@@ -424,16 +482,18 @@
   align-items: center;
   justify-content: center;
   font-size: var(--text-sm);
-  color: var(--text-muted);
+  color: var(--ink-faint);
   background: transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
 }
 
 .iconButton:hover {
-  background: var(--bg-elevated);
-  color: var(--text-primary);
+  background: var(--surface-cream-soft);
+  color: var(--ink);
 }
+
+/* ─── Detail pane ─── */
 
 .detail {
   display: flex;
@@ -451,9 +511,11 @@
 .detailTitle {
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
-  color: var(--text-primary);
+  color: var(--ink);
   margin: 0;
 }
+
+/* ─── Split layout ─── */
 
 .split {
   display: grid;
@@ -464,7 +526,7 @@
 }
 
 .splitList {
-  border-right: var(--border-width) solid var(--border-default);
+  border-right: var(--border-panel-strong);
   padding-right: var(--space-4);
   overflow-y: auto;
 }
@@ -474,7 +536,75 @@
   padding-right: var(--space-2);
 }
 
+/* ─── Monaco frame ─── */
+
 .monacoFrame {
   flex: 1;
   min-height: 400px;
+}
+
+/* ─── Lifecycle event chips (AC-009, AC-017–AC-022 — mockup issue #2) ─── */
+/* Chip selection signal: CSS class swap chip ↔ chipSelected (ADR D13 / §8.9).  */
+/* Single-select: only one chip carries chipSelected at a time (ADR D10/AC-022). */
+/* NOTE: .railItem/.railItemActive remain for the left rail nav.                 */
+
+/* AC-009: default chip border uses --chip-border-default (= --border-panel-strong-color) */
+/* AC-019: default state tokens — bg: --chip-bg-default, border: --border-panel-strong,
+           color: --chip-text-default                                             */
+/* AC-021: --chip-text-default (#4a4742) on --chip-bg-default (#ece4cf) ≈ 6.8:1 */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  background: var(--chip-bg-default);
+  border: var(--border-panel-strong);
+  color: var(--chip-text-default);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* AC-018: selected state tokens — bg: --chip-bg-selected (ink), border: --chip-border-selected (ink),
+           color: --chip-text-selected (cream)                                    */
+/* AC-020: --chip-text-selected (#f1ead8) on --chip-bg-selected (#1d1c19) ≈ 14.8:1 */
+.chipSelected {
+  display: inline-flex;
+  align-items: center;
+  background: var(--chip-bg-selected);
+  border: var(--border-panel-strong);
+  border-color: var(--chip-border-selected);
+  color: var(--chip-text-selected);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+}
+
+/* ─── Chip group container (AC-008: lifecycle-chip group gets --border-panel-strong) ─── */
+.chipGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: var(--space-3);
+  border: var(--border-panel-strong);
+  border-radius: var(--radius-md);
+}
+
+/* ─── Hooks tab: empty-state container (AC-023–AC-025 — mockup issue #3) ─── */
+/* AC-023: border-style: solid (not dashed — ADR D8 primary branch).            */
+/* AC-024: border-color: --empty-state-border-color (#bfb59a); width: 1.5px.    */
+/* AC-025: #bfb59a vs #f1ead8 contrast ≈ 1.71:1 (within 1.5–3.0 range).        */
+
+.hookEmptyState {
+  padding: var(--space-4);
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: var(--empty-state-border-color);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  line-height: var(--leading-normal);
 }
