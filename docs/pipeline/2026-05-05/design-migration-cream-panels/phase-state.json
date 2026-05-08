@@ -40,15 +40,20 @@
     {
       "id": "5",
       "name": "Settings regression tests + final verification",
-      "status": "PENDING"
+      "status": "REVIEWER_PASSED",
+      "judgment_failures": 0,
+      "attempt": 1,
+      "qa_verdict": "docs/pipeline/2026-05-05/design-migration-cream-panels/qa/phase-05-attempt-1-verdict.md",
+      "reviewer_verdict": "docs/pipeline/2026-05-05/design-migration-cream-panels/reviewer/phase-05-attempt-1-verdict.md"
     }
   ],
   "active_phase": {
-    "id": "4",
-    "name": "Settings panel re-theme",
+    "id": "5",
+    "name": "Settings regression tests + final verification",
     "status": "REVIEWER_PASSED",
-    "judgment_failures": 1,
-    "attempt": 2,
-    "next_action": "Commit Phase 4 changeset per CONS-17; open Phase 5"
-  }
+    "judgment_failures": 0,
+    "attempt": 1,
+    "next_action": "RUN COMPLETE — commit Phase 5 changeset as single atomic commit per CONS-17. Security trigger is OFF. No further pipeline phases."
+  },
+  "run_status": "COMPLETE"
 }

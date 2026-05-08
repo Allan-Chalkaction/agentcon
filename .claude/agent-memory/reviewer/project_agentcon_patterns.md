@@ -225,3 +225,34 @@ Phase 4 (Settings panel re-theme) passed Reviewer on Attempt 2 (QA Attempt 1 fai
 
 **Judgment counter state entering Phase 5:**
 - Phase 4 closed with 1/2 judgment failures (QA Attempt 1 layout fail only). Phase 5 starts at 0/2 (fresh budget).
+
+---
+
+## From design-migration-cream-panels run (Phase 5, 2026-05-08) — FINAL PHASE / RUN COMPLETE
+
+Phase 5 (Settings regression tests + final verification) passed Reviewer on Attempt 1 with 0 BLOCKING, 0 HIGH, 1 SUGGESTION, 1 NIT. The full run is now COMPLETE.
+
+**AC-005 CALIBRATION LESSON — CRITICAL:**
+
+When an AC says "zero references to `--token-name` exist in `src/`" and the completion criterion pairs it with `grep -r "--token-name" src/`:
+- The binding is GREEDY/LITERAL: zero occurrences of that exact character string anywhere under `src/`, INCLUDING comments, documentation strings, and disabled code blocks.
+- "Zero live var() references" requires additional textual support ("zero live references" or "zero var() calls") — absent such qualifier, the plain string wins.
+- A Phase 4 verdict interpreted "zero live references" as sufficient and missed 8 comment-line occurrences. Phase 5 Builder correctly cleaned these up.
+- When reviewing similar token-cleanup ACs in future runs, scan comments as well as live code for the banned token name pattern.
+
+**Phase 5 confirmed correct patterns:**
+
+- `scanDirForPattern(dir, exts, regex)` recursive filesystem walker is the correct pattern for final-grep ACs in Vitest. It faithfully reproduces `grep -rn` semantics for the specific file extensions listed.
+- `afterEach` opQueue drain ordering is critical: (1) cleanup(), (2) vi.restoreAllMocks(), (3) setTimeout macrotask drain, (4) store reset. Any reordering risks cross-test contamination from the module-level opQueue singleton.
+- AC-028 CONS-23 trigger: always `readText = () => Promise.reject(...)`. Never malformed-JSON fakeFs entry. The malformed-JSON path silently swallows parse errors (parsedSettings = null; scopeData.error not set) so the errorBanner never renders.
+- `armStore({ loaded: true, error: errorMsg })` is the correct pattern for component-level error-banner tests — prevents the component from re-triggering loadScope and clearing the error.
+
+**Test count at run close:** 133 tests across 5 test files (87 baseline + 46 Phase 5 new).
+
+**PRD §9 "AC covered" heading typo pattern:**
+- Phase 5 heading listed 21 ACs but completion criteria required 22 (AC-043, AC-044, AC-053 omitted from heading). Completion criteria are always the binding contract, not the heading count. This is a doc-tuning item, not a blocking finding.
+
+**Run-closure summary:**
+- 7 phases (0, 0.5, 1, 2, 3, 4, 5). 2 judgment failures across the run (Phase 1 QA, Phase 4 QA). Zero Reviewer failures.
+- All design goals delivered: cream-panels-on-dark-chrome, --border-panel-strong, four mockup-issue resolutions, --lp-* rename complete, --accent-primary cleanup complete, 133 tests.
+- Outstanding post-run follow-ons: ScaffoldBanner inline style (HIGH), PermRuleRow/dropdown chrome tokens (SUGGESTION), hardcoded danger hover (NIT), dev-switch.test.tsx "2.2 gamma" comment (NIT), PRD §9 heading typo (doc).

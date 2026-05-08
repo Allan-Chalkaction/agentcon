@@ -23,7 +23,7 @@ const BUCKET_META: Record<
   { label: string; color: string; bg: string }
 > = {
   allow: { label: "Allow", color: "var(--color-success)", bg: "rgba(74,222,128,0.1)" },
-  /* AC-005: --accent-primary replaced with --accent-red (ADR D6, Phase 4) */
+  /* AC-005: --accent-red (old accent-primary family retired in Phase 4, ADR D6) */
   ask: { label: "Ask", color: "var(--accent-red)", bg: "rgba(184,54,43,0.1)" },
   deny: { label: "Deny", color: "var(--color-danger)", bg: "rgba(248,113,113,0.1)" },
 };
@@ -443,7 +443,7 @@ function AddRuleForm({
                 <span key={ex}>
                   {i > 0 && ", "}
                   <code
-                    /* AC-005: --accent-primary replaced with --accent-red (ADR D6, Phase 4) */
+                    /* AC-005: --accent-red (old accent-primary family retired in Phase 4, ADR D6) */
                     style={{ cursor: "pointer", color: "var(--accent-red)" }}
                     onClick={() => setArg(ex)}
                     title="Click to use this example"
