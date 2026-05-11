@@ -7,9 +7,10 @@
 // eliminates it in production builds (CTO Round 2 watching concern #6).
 // When a real router is adopted, delete this file and replace with App+Router.
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ClaudeSettingsPanel } from "./panels/claude-settings/ClaudeSettingsPanel";
 import { LandingPage } from "./panels/landing/LandingPage";
+import { usePreferencesStore } from "./stores/preferencesStore";
 import styles from "./App.module.css";
 
 type Surface = "settings" | "landing";
@@ -22,6 +23,12 @@ function readInitialSurface(): Surface {
 
 export default function App() {
   const [surface, setSurface] = useState<Surface>(readInitialSurface);
+
+  // Hydrate user preferences once on mount. Uses getState() so App does NOT
+  // subscribe to the store and avoids re-renders on expertMode changes (ADR D3).
+  useEffect(() => {
+    void usePreferencesStore.getState().hydrate();
+  }, []);
 
   return (
     <>

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useClaudeConfigStore, type Scope } from "../../stores/claudeConfigStore";
+import { usePreferencesStore } from "../../stores/preferencesStore";
 import { ScopeSwitcher } from "./ScopeSwitcher";
 import { ScaffoldBanner } from "./ScaffoldBanner";
 import { AgentsTab } from "./AgentsTab";
@@ -28,17 +29,24 @@ const SURFACES: {
   id: Surface;
   label: string;
   scopes: Scope[];
+  expertOnly?: true;
 }[] = [
   { id: "agents", label: "Agents", scopes: ["user", "project"] },
   { id: "skills", label: "Skills", scopes: ["user", "project"] },
   { id: "commands", label: "Commands", scopes: ["user", "project"] },
   { id: "claudeMd", label: "CLAUDE.md", scopes: ["user", "project"] },
-  { id: "hooks", label: "Hooks", scopes: ["user", "project", "local"] },
-  { id: "permissions", label: "Permissions", scopes: ["user", "project", "local"] },
-  { id: "env", label: "Env", scopes: ["user", "project", "local"] },
-  { id: "plugins", label: "Plugins", scopes: ["user", "project", "local"] },
-  { id: "rawJson", label: "Raw JSON", scopes: ["user", "project", "local"] },
+  { id: "hooks", label: "Hooks", scopes: ["user", "project", "local"], expertOnly: true },
+  { id: "permissions", label: "Permissions", scopes: ["user", "project", "local"], expertOnly: true },
+  { id: "env", label: "Env", scopes: ["user", "project", "local"], expertOnly: true },
+  { id: "plugins", label: "Plugins", scopes: ["user", "project", "local"], expertOnly: true },
+  { id: "rawJson", label: "Raw JSON", scopes: ["user", "project", "local"], expertOnly: true },
 ];
+
+// Derived at module load from the expertOnly flags above — single source of truth.
+// Adding a new expert-only tab requires only setting expertOnly: true in SURFACES.
+const EXPERT_ONLY_SURFACES = new Set(
+  SURFACES.filter((s) => s.expertOnly).map((s) => s.id)
+);
 
 const PROJECT_PATH_KEY = "lastProjectPath";
 
@@ -55,6 +63,12 @@ export function ClaudeSettingsPanel() {
   const ready = useClaudeConfigStore((s) => s.ready);
   const initError = useClaudeConfigStore((s) => s.initError);
 
+  // Preferences: expertMode and loaded flag from preferencesStore.
+  // Hydration is triggered from App.tsx; this component only subscribes.
+  const expertMode = usePreferencesStore((s) => s.expertMode);
+  const prefsLoaded = usePreferencesStore((s) => s.loaded);
+  const setExpertMode = usePreferencesStore((s) => s.setExpertMode);
+
   // Project root is now persisted via window.agentcon.settings under
   // PROJECT_PATH_KEY. Loaded once on mount, then mirrored into the main
   // process whenever it changes.
@@ -62,6 +76,23 @@ export function ClaudeSettingsPanel() {
   const [pathLoaded, setPathLoaded] = useState(false);
 
   const [surface, setSurface] = useState<Surface>("agents");
+
+  // Snap-back: when expertMode is "beginner" and the stored surface is Expert-only,
+  // derive "agents" purely during render (ADR D7 — same render pass, no intermediate frame).
+  // Beginner → Expert does NOT change the active tab.
+  const effectiveSurface =
+    expertMode === "beginner" && EXPERT_ONLY_SURFACES.has(surface)
+      ? "agents"
+      : surface;
+
+  // State sync: if effectiveSurface diverges from surface (i.e., the user was on
+  // an Expert-only tab and toggled to Beginner), lazily update surface so that
+  // toggling back to Expert does not silently resume the previous Expert tab.
+  useEffect(() => {
+    if (surface !== effectiveSurface) {
+      setSurface(effectiveSurface);
+    }
+  }, [expertMode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     void init();
@@ -126,7 +157,7 @@ export function ClaudeSettingsPanel() {
     setProjectPath(null);
   }
 
-  const surfaceMeta = SURFACES.find((s) => s.id === surface);
+  const surfaceMeta = SURFACES.find((s) => s.id === effectiveSurface);
   const scopeAllowed = surfaceMeta?.scopes.includes(activeScope) ?? true;
 
   const showScaffold =
@@ -139,6 +170,13 @@ export function ClaudeSettingsPanel() {
   const surfaceError = scopeData.error;
   const banner = initError ?? surfaceError;
 
+  // Filter rail entries based on current expertMode. Hidden tabs are absent
+  // from the DOM — not disabled, not aria-hidden (ADR D6).
+  // Deferred until prefsLoaded to avoid a flash of wrong rail on cold start.
+  const visibleSurfaces = prefsLoaded
+    ? SURFACES.filter((s) => expertMode === "expert" || !s.expertOnly)
+    : [];
+
   return (
     <div className={styles.shell}>
       <ScopeSwitcher
@@ -147,6 +185,9 @@ export function ClaudeSettingsPanel() {
         projectRoot={projectPath}
         onPickFolder={pickFolder}
         onClearFolder={clearFolder}
+        expertMode={expertMode}
+        prefsLoaded={prefsLoaded}
+        onSetExpertMode={setExpertMode}
       />
       {banner && (
         <div className={styles.errorBanner}>
@@ -167,14 +208,14 @@ export function ClaudeSettingsPanel() {
       )}
       <div className={styles.body}>
         <nav className={styles.rail}>
-          {SURFACES.map((s) => {
+          {visibleSurfaces.map((s) => {
             const disabled = !s.scopes.includes(activeScope);
             return (
               <button
                 key={s.id}
                 type="button"
                 className={
-                  surface === s.id ? styles.railItemActive : styles.railItem
+                  effectiveSurface === s.id ? styles.railItemActive : styles.railItem
                 }
                 disabled={disabled}
                 onClick={() => setSurface(s.id)}
@@ -201,7 +242,7 @@ export function ClaudeSettingsPanel() {
               hint="Switch to a different scope above."
             />
           ) : (
-            <SurfaceView surface={surface} />
+            <SurfaceView surface={effectiveSurface} />
           )}
         </div>
       </div>

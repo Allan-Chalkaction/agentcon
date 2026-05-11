@@ -89,6 +89,46 @@
   color: var(--ink-soft);
 }
 
+/* ─── Expert mode segmented control (ui-spec §2–4) ─── */
+/* Mirrors .scopeTab / .scopeTabActive visual language. Active state uses        */
+/* cream-soft + border darkening, NOT a red fill (ui-spec deviation log §3).     */
+/* --accent-red appears only in the :focus-visible outline (AC-2 / ui-spec §4).  */
+
+.expertToggle {
+  display: flex;
+  gap: var(--space-1);
+  margin-left: auto;
+  align-items: center;
+}
+
+.expertSegment {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--surface-cream);
+  color: var(--ink-soft);
+  border: var(--border-width) solid transparent;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.expertSegment:hover:not(:disabled) {
+  background: var(--surface-cream-soft);
+}
+
+.expertSegment:focus-visible {
+  outline: 2px solid var(--accent-red);
+  outline-offset: 1px;
+}
+
+.expertSegmentActive {
+  background: var(--surface-cream-soft);
+  color: var(--ink);
+  border-color: var(--border-panel-strong-color);
+  font-weight: var(--weight-medium);
+}
+
 /* ─── Body layout ─── */
 
 .body {

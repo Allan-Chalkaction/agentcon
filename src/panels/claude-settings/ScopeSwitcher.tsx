@@ -1,4 +1,5 @@
 import type { Scope } from "../../stores/claudeConfigStore";
+import type { ExpertMode } from "../../stores/preferencesStore";
 import styles from "./ClaudeSettingsPanel.module.css";
 
 const SCOPES: { id: Scope; label: string; hint: string }[] = [
@@ -25,12 +26,18 @@ export function ScopeSwitcher({
   projectRoot,
   onPickFolder,
   onClearFolder,
+  expertMode,
+  prefsLoaded,
+  onSetExpertMode,
 }: {
   scope: Scope;
   onChange: (scope: Scope) => void;
   projectRoot: string | null;
   onPickFolder: () => void;
   onClearFolder: () => void;
+  expertMode: ExpertMode;
+  prefsLoaded: boolean;
+  onSetExpertMode: (mode: ExpertMode) => void;
 }) {
   return (
     <header className={styles.scopeBar}>
@@ -101,6 +108,40 @@ export function ScopeSwitcher({
               Pick a folder…
             </button>
           </>
+        )}
+        {/* Beginner/Expert segmented control — last child of .scopeMeta, right-aligned.
+            Not rendered until prefsLoaded to avoid a flash of wrong active state. */}
+        {prefsLoaded && (
+          <div
+            role="group"
+            aria-label="Mode"
+            className={styles.expertToggle}
+          >
+            <button
+              type="button"
+              aria-pressed={expertMode === "beginner"}
+              className={
+                expertMode === "beginner"
+                  ? `${styles.expertSegment} ${styles.expertSegmentActive}`
+                  : styles.expertSegment
+              }
+              onClick={() => onSetExpertMode("beginner")}
+            >
+              Beginner
+            </button>
+            <button
+              type="button"
+              aria-pressed={expertMode === "expert"}
+              className={
+                expertMode === "expert"
+                  ? `${styles.expertSegment} ${styles.expertSegmentActive}`
+                  : styles.expertSegment
+              }
+              onClick={() => onSetExpertMode("expert")}
+            >
+              Expert
+            </button>
+          </div>
         )}
       </div>
     </header>
